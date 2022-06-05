@@ -1,0 +1,372 @@
+houseAgent                     Trying to use intention AlarmIntention to achieve goal AlarmGoal#0[object Object]
+houseAgent>AlarmIntention#0    Intention started
+houseAgent                     Trying to use intention CarChargerIntention to achieve goal CarChargerGoal#1[object Object]
+houseAgent>CarChargerIntention#1 Intention started
+houseAgent                     Trying to use intention PostmanAcceptAllRequest to achieve goal Postman#2[object Object]
+houseAgent>PostmanAcceptAllRequest#2 Intention started
+smartAirAgent                  Trying to use intention PostmanAcceptAllRequest to achieve goal Postman#3[object Object]
+smartAirAgent>PostmanAcceptAllRequest#3 Intention started
+smartAirAgent                  Trying to use intention smartAirPurifierIntention to achieve goal smartAirPurifierGoal#4[object Object]
+smartAirAgent>smartAirPurifierIntention#4 Intention started
+humidityAgent                  Trying to use intention PostmanAcceptAllRequest to achieve goal Postman#5[object Object]
+humidityAgent>PostmanAcceptAllRequest#5 Intention started
+humidityAgent                  Trying to use intention humidityMeterIntention to achieve goal humidityMeterGoal#6[object Object]
+humidityAgent>humidityMeterIntention#6 Intention started
+infraredCameraAgent            Trying to use intention PostmanAcceptAllRequest to achieve goal Postman#7[object Object]
+infraredCameraAgent>PostmanAcceptAllRequest#7 Intention started
+infraredCameraAgent            Trying to use intention infraredCameraIntention to achieve goal infraredCameraGoal#8[object Object]
+infraredCameraAgent>infraredCameraIntention#8 Intention started
+- START OF TEST -
+
+Mario  moved from bedroom to baby_room
+vacuum_cleaner                 Belief changed: room entrance
+vacuum_cleaner                 Belief changed: room living_room
+vacuum_cleaner                 Belief changed: room kitchen
+vacuum_cleaner                 Belief changed: vacuum vacuum_cleaner
+vacuum_cleaner                 Belief changed: adj entrance living_room
+vacuum_cleaner                 Belief changed: adj living_room entrance
+vacuum_cleaner                 Belief changed: adj living_room kitchen
+vacuum_cleaner                 Belief changed: adj kitchen living_room
+vacuum_cleaner                 Belief changed: in_room vacuum_cleaner entrance
+vacuum_cleaner                 Belief changed: switch_off vacuum_cleaner
+vacuum_cleaner_2               Belief changed: room hallway
+vacuum_cleaner_2               Belief changed: room bathroom
+vacuum_cleaner_2               Belief changed: room bedroom
+vacuum_cleaner_2               Belief changed: room baby_room
+vacuum_cleaner_2               Belief changed: vacuum vacuum_cleaner_1
+vacuum_cleaner_2               Belief changed: adj hallway bathroom
+vacuum_cleaner_2               Belief changed: adj bathroom hallway
+vacuum_cleaner_2               Belief changed: adj bathroom bedroom
+vacuum_cleaner_2               Belief changed: adj bedroom bathroom
+vacuum_cleaner_2               Belief changed: adj bedroom baby_room
+vacuum_cleaner_2               Belief changed: adj baby_room bedroom
+vacuum_cleaner_2               Belief changed: in_room vacuum_cleaner_1 hallway
+vacuum_cleaner_2               Belief changed: switch_off vacuum_cleaner_1
+garage_pump                    Belief changed: heatpump heat_pump
+garage_pump                    Belief changed: solarpanel solar_panel
+garage_pump                    Belief changed: carcharger car_charger
+garage_pump                    Belief changed: window window_open
+garage_pump                    Belief changed: switch_off heat_pump
+garage_pump                    Belief changed: notawake solar_panel
+garage_pump                    Belief changed: notawake car_charger
+garage_pump                    Belief changed: notopen window_open
+houseAgent>CarChargerIntention#1 status garage_car_charger: unplugged_min
+
+humidityAgent>humidityMeterIntention#6 status bathroom_meter: low_humidity
+
+infraredCameraAgent>infraredCameraIntention#8 status garage_camera: off_infrared
+
+houseAgent                     Belief changed: not charging_min
+houseAgent                     Belief changed: not charging_max
+houseAgent                     Belief changed: not_charging_min
+houseAgent                     Belief changed: not not_charging_max
+humidityAgent                  Belief changed: humidity_meter_low
+humidityAgent                  Belief changed: not humidity_meter_high
+infraredCameraAgent            Belief changed: not movement_detected
+0:05:30 ALARM, it's 5 and 30!
+houseAgent>AlarmIntention#0    Intention success
+houseAgent                     Succesfully used intention AlarmIntention to achieve goal AlarmGoal#0[object Object]
+0:06:00 Infrared camera is off
+Dirty air detected in the kitchen
+Air purifier is on
+bedroom_light1  light turned on
+bedroom_light2  light turned on
+kitchen_light1  light turned on
+kitchen_light2  light turned on
+kitchen_light3  light turned on
+John  moved from bedroom to hallway
+John  moved from hallway to entrance
+John  moved from entrance to living_room
+John  moved from living_room to kitchen
+
+
+infraredCameraAgent>infraredCameraIntention#8 status garage_camera: off_infrared
+
+smartAirAgent>smartAirPurifierIntention#4 status kitchen_air_pur: dirty_air
+
+smartAirAgent                  Belief changed: dirty_air
+houseAgent>PostmanAcceptAllRequest#2 Reading received message windowGoal#9[object Object]
+houseAgent                     Trying to use intention windowIntention to achieve goal windowGoal#9[object Object]
+houseAgent>windowIntention#9   Intention started
+kitchen_window1 is open
+houseAgent                     Belief changed: window_open
+houseAgent                     Belief changed: not window_close
+0:06:30 living_room_light1  light turned on
+living_room_light2  light turned on
+living_room_light3  light turned on
+
+
+0:07:45 Energy is available from the solar panels
+houseAgent                     Trying to use intention PostmanAcceptAllRequest to achieve goal Postman#10[object Object]
+houseAgent>PostmanAcceptAllRequest#10 Intention started
+Detected movement inside the garage
+Recharge car at minimum power stopped
+Recharge car at maximum power started
+
+
+garage_pump                    Belief changed: awake solar_panel
+garage_pump                    Belief changed: not notawake solar_panel
+garage_pump                    Belief changed: not awake car_charger
+garage_pump                    Belief changed: awake car_charger
+garage_pump                    Belief changed: not notawake car_charger
+infraredCameraAgent>infraredCameraIntention#8 status garage_camera: movement_detected
+
+houseAgent>CarChargerIntention#1 status garage_car_charger: unplugged_min
+
+infraredCameraAgent            Belief changed: movement_detected
+houseAgent>PostmanAcceptAllRequest#10 Reading received message smartTiltingGoal#11[object Object]
+houseAgent                     Trying to use intention smartTiltingIntention to achieve goal smartTiltingGoal#11[object Object]
+houseAgent>smartTiltingIntention#11 Intention started
+The tilting is open
+houseAgent                     Belief changed: smarttilt_open
+houseAgent                     Belief changed: not smarttilt_close
+0:08:30 bedroom_light1  light turned off
+bedroom_light2  light turned off
+Mary  moved from bedroom to hallway
+Mary  moved from hallway to entrance
+Mary  moved from entrance to living_room
+Mary  moved from living_room to kitchen
+John  moved from kitchen to living_room
+John  moved from living_room to entrance
+John  moved from entrance to garage
+Recharge car at maximum power stopped
+
+
+garage_pump                    Belief changed: notawake car_charger
+garage_pump                    Belief changed: not awake car_charger
+houseAgent>CarChargerIntention#1 status garage_car_charger: unplugged_max
+
+houseAgent                     Belief changed: not not_charging_min
+houseAgent                     Belief changed: not_charging_max
+0:09:00 Mary  moved from kitchen to living_room
+Mary  moved from living_room to entrance
+Mary  moved from entrance to garage
+living_room_light1  light turned off
+living_room_light2  light turned off
+living_room_light3  light turned off
+kitchen_light1  light turned off
+kitchen_light2  light turned off
+kitchen_light3  light turned off
+The tilting is close
+
+
+0:09:30 Energy is available from the solar panels
+Recharge car at maximum power stopped
+garage_pump                    Trying to use intention RetryFourTimesIntention_hp to achieve goal RetryGoal_hp#13[object Object]
+garage_pump>RetryFourTimesIntention_hp#12 Intention started
+garage_pump                    Trying to use intention OnlinePlanning to achieve goal PddlGoal#12[object Object]
+garage_pump>OnlinePlanning#13  Intention started
+houseAgent>CarChargerIntention#1 status garage_car_charger: unplugged_max
+
+0:10:30 vacuum_cleaner                 Trying to use intention RetryFourTimesIntention_vc to achieve goal RetryGoal_vc#15[object Object]
+vacuum_cleaner>RetryFourTimesIntention_vc#14 Intention started
+vacuum_cleaner                 Trying to use intention OnlinePlanning to achieve goal PddlGoal#14[object Object]
+vacuum_cleaner>OnlinePlanning#15 Intention started
+0:11:15 houseAgent                     Trying to use intention PostmanAcceptAllRequest to achieve goal Postman#16[object Object]
+houseAgent>PostmanAcceptAllRequest#16 Intention started
+Humidity: 88%
+High humidity detected in the bathroom
+humidityAgent>humidityMeterIntention#6 status bathroom_meter: high_humidity
+
+humidityAgent                  Belief changed: not humidity_meter_low
+humidityAgent                  Belief changed: humidity_meter_high
+houseAgent>PostmanAcceptAllRequest#16 Reading received message windowGoal#17[object Object]
+houseAgent                     Trying to use intention windowIntention to achieve goal windowGoal#17[object Object]
+houseAgent>windowIntention#17  Intention started
+bathroom_window is open
+garage_pump>OnlinePlanning#13  Plan found:
+garage_pump>OnlinePlanning#13  - (switchon_hp heat_pump)
+garage_pump>OnlinePlanning#13  - (settemp_high heat_pump solar_panel car_charger window_open)
+garage_pump>OnlinePlanning#13  Starting sequential step (SwitchOn_hp heat_pump) Effect: switch_on heat_pump
+garage_pump>SwitchOn_hp#18     Intention started
+Heat pump on
+Low temperature (50 degrees) of heat pump on
+garage_pump                    Belief changed: switch_on heat_pump
+garage_pump                    Belief changed: not switch_off heat_pump
+garage_pump>SwitchOn_hp#18     Intention success
+garage_pump>OnlinePlanning#13  Starting sequential step (setTemp_high heat_pump solar_panel car_charger window_open) Effect: set_temp_high heat_pump
+garage_pump>setTemp_high#19    Intention started
+High temperature (80 degrees) of heat pump on
+garage_pump                    Belief changed: set_temp_high heat_pump
+garage_pump                    Belief changed: not set_temp_high heat_pump
+garage_pump>setTemp_high#19    Intention success
+garage_pump>OnlinePlanning#13  Intention success
+garage_pump                    Succesfully used intention OnlinePlanning to achieve goal PddlGoal#12[object Object]
+garage_pump>RetryFourTimesIntention_hp#12 Intention success
+garage_pump                    Succesfully used intention RetryFourTimesIntention_hp to achieve goal RetryGoal_hp#13[object Object]
+0:12:00 vacuum_cleaner_2               Trying to use intention RetryFourTimesIntention_vc to achieve goal RetryGoal_vc#21[object Object]
+vacuum_cleaner_2>RetryFourTimesIntention_vc#20 Intention started
+vacuum_cleaner_2               Trying to use intention OnlinePlanning to achieve goal PddlGoal#20[object Object]
+vacuum_cleaner_2>OnlinePlanning#21 Intention started
+
+
+0:12:30 vacuum_cleaner>OnlinePlanning#15 Plan found:
+vacuum_cleaner>OnlinePlanning#15 - (switchon vacuum_cleaner)
+vacuum_cleaner>OnlinePlanning#15 - (move vacuum_cleaner entrance living_room)
+vacuum_cleaner>OnlinePlanning#15 - (move vacuum_cleaner living_room kitchen)
+vacuum_cleaner>OnlinePlanning#15 Starting sequential step (SwitchOn vacuum_cleaner) Effect: switch_on vacuum_cleaner
+vacuum_cleaner>SwitchOn#22     Intention started
+vacuum_cleaner turned on
+vacuum_cleaner                 Belief changed: switch_on vacuum_cleaner
+vacuum_cleaner                 Belief changed: not switch_off vacuum_cleaner
+vacuum_cleaner>SwitchOn#22     Intention success
+vacuum_cleaner>OnlinePlanning#15 Starting sequential step (Move vacuum_cleaner entrance living_room) Effect: in_room vacuum_cleaner living_room,not in_room vacuum_cleaner entrance
+vacuum_cleaner>Move#23         Intention started
+Move vacuum_cleaner from entrance to living_room
+Cleaned entrance
+Cleaning living_room
+vacuum_cleaner                 Belief changed: in_room vacuum_cleaner living_room
+vacuum_cleaner                 Belief changed: not in_room vacuum_cleaner entrance
+vacuum_cleaner>Move#23         Intention success
+vacuum_cleaner>OnlinePlanning#15 Starting sequential step (Move vacuum_cleaner living_room kitchen) Effect: in_room vacuum_cleaner kitchen,not in_room vacuum_cleaner living_room
+vacuum_cleaner>Move#24         Intention started
+Move vacuum_cleaner from living_room to kitchen
+Cleaned living_room
+Cleaning kitchen
+vacuum_cleaner                 Belief changed: in_room vacuum_cleaner kitchen
+vacuum_cleaner                 Belief changed: not in_room vacuum_cleaner living_room
+vacuum_cleaner>Move#24         Intention success
+vacuum_cleaner>OnlinePlanning#15 Intention success
+vacuum_cleaner                 Succesfully used intention OnlinePlanning to achieve goal PddlGoal#14[object Object]
+vacuum_cleaner>RetryFourTimesIntention_vc#14 Intention success
+vacuum_cleaner                 Succesfully used intention RetryFourTimesIntention_vc to achieve goal RetryGoal_vc#15[object Object]
+0:13:00
+
+0:15:15 vacuum_cleaner_2>OnlinePlanning#21 Plan found:
+vacuum_cleaner_2>OnlinePlanning#21 - (switchon vacuum_cleaner_1)
+vacuum_cleaner_2>OnlinePlanning#21 - (move vacuum_cleaner_1 hallway bathroom)
+vacuum_cleaner_2>OnlinePlanning#21 - (move vacuum_cleaner_1 bathroom bedroom)
+vacuum_cleaner_2>OnlinePlanning#21 - (move vacuum_cleaner_1 bedroom baby_room)
+vacuum_cleaner_2>OnlinePlanning#21 Starting sequential step (SwitchOn vacuum_cleaner_1) Effect: switch_on vacuum_cleaner_1
+vacuum_cleaner_2>SwitchOn#25   Intention started
+vacuum_cleaner_1 turned on
+vacuum_cleaner_2               Belief changed: switch_on vacuum_cleaner_1
+vacuum_cleaner_2               Belief changed: not switch_off vacuum_cleaner_1
+vacuum_cleaner_2>SwitchOn#25   Intention success
+vacuum_cleaner_2>OnlinePlanning#21 Starting sequential step (Move vacuum_cleaner_1 hallway bathroom) Effect: in_room vacuum_cleaner_1 bathroom,not in_room vacuum_cleaner_1 hallway
+vacuum_cleaner_2>Move#26       Intention started
+Move vacuum_cleaner_1 from hallway to bathroom
+Cleaned hallway
+Cleaning bathroom
+vacuum_cleaner_2               Belief changed: in_room vacuum_cleaner_1 bathroom
+vacuum_cleaner_2               Belief changed: not in_room vacuum_cleaner_1 hallway
+vacuum_cleaner_2>Move#26       Intention success
+vacuum_cleaner_2>OnlinePlanning#21 Starting sequential step (Move vacuum_cleaner_1 bathroom bedroom) Effect: in_room vacuum_cleaner_1 bedroom,not in_room vacuum_cleaner_1 bathroom
+vacuum_cleaner_2>Move#27       Intention started
+Move vacuum_cleaner_1 from bathroom to bedroom
+Cleaned bathroom
+Cleaning bedroom
+vacuum_cleaner_2               Belief changed: in_room vacuum_cleaner_1 bedroom
+vacuum_cleaner_2               Belief changed: not in_room vacuum_cleaner_1 bathroom
+vacuum_cleaner_2>Move#27       Intention success
+vacuum_cleaner_2>OnlinePlanning#21 Starting sequential step (Move vacuum_cleaner_1 bedroom baby_room) Effect: in_room vacuum_cleaner_1 baby_room,not in_room vacuum_cleaner_1 bedroom
+vacuum_cleaner_2>Move#28       Intention started
+Move vacuum_cleaner_1 from bedroom to baby_room
+Cleaned bedroom
+Cleaning baby_room
+vacuum_cleaner_2               Belief changed: in_room vacuum_cleaner_1 baby_room
+vacuum_cleaner_2               Belief changed: not in_room vacuum_cleaner_1 bedroom
+vacuum_cleaner_2>Move#28       Intention success
+vacuum_cleaner_2>OnlinePlanning#21 Intention success
+vacuum_cleaner_2               Succesfully used intention OnlinePlanning to achieve goal PddlGoal#20[object Object]
+vacuum_cleaner_2>RetryFourTimesIntention_vc#20 Intention success
+vacuum_cleaner_2               Succesfully used intention RetryFourTimesIntention_vc to achieve goal RetryGoal_vc#21[object Object]
+0:16:30 Mary  moved from garage to entrance
+Mary  moved from entrance to living_room
+
+
+0:17:45 Energy is NOT available from the solar panels
+living_room_light1  light turned on
+living_room_light2  light turned on
+living_room_light3  light turned on
+Infrared camera is on
+
+
+garage_pump                    Belief changed: notawake solar_panel
+garage_pump                    Belief changed: not awake solar_panel
+infraredCameraAgent>infraredCameraIntention#8 status garage_camera: on_infrared
+
+infraredCameraAgent            Belief changed: not movement_detected
+0:18:30 John  moved from garage to entrance
+John  moved from entrance to living_room
+Energy is NOT available from the solar panels
+Recharge car at minimum power started
+
+
+houseAgent>CarChargerIntention#1 status garage_car_charger: plugged_min
+
+houseAgent                     Belief changed: charging_min
+houseAgent                     Belief changed: not not_charging_max
+0:19:00 John  moved from living_room to kitchen
+Infrared camera is on
+
+
+infraredCameraAgent>infraredCameraIntention#8 status garage_camera: on_infrared
+
+0:19:30 John  moved from kitchen to living_room
+vacuum_cleaner                 Trying to use intention RetryFourTimesIntention_vc to achieve goal RetryGoal_vc#30[object Object]
+vacuum_cleaner>RetryFourTimesIntention_vc#29 Intention started
+vacuum_cleaner                 Trying to use intention OnlinePlanning to achieve goal PddlGoal#29[object Object]
+vacuum_cleaner>OnlinePlanning#30 Intention started
+
+
+0:20:15 vacuum_cleaner>OnlinePlanning#30 Plan found:
+vacuum_cleaner>OnlinePlanning#30 - (move vacuum_cleaner kitchen living_room)
+vacuum_cleaner>OnlinePlanning#30 - (move vacuum_cleaner living_room entrance)
+vacuum_cleaner>OnlinePlanning#30 Starting sequential step (Move vacuum_cleaner kitchen living_room) Effect: in_room vacuum_cleaner living_room,not in_room vacuum_cleaner kitchen
+vacuum_cleaner>Move#31         Intention started
+Move vacuum_cleaner from kitchen to living_room
+Cleaned kitchen
+Cleaning living_room
+vacuum_cleaner                 Belief changed: in_room vacuum_cleaner living_room
+vacuum_cleaner                 Belief changed: not in_room vacuum_cleaner kitchen
+vacuum_cleaner>Move#31         Intention success
+vacuum_cleaner>OnlinePlanning#30 Starting sequential step (Move vacuum_cleaner living_room entrance) Effect: in_room vacuum_cleaner entrance,not in_room vacuum_cleaner living_room
+vacuum_cleaner>Move#32         Intention started
+Move vacuum_cleaner from living_room to entrance
+Cleaned living_room
+Cleaning entrance
+vacuum_cleaner                 Belief changed: in_room vacuum_cleaner entrance
+vacuum_cleaner                 Belief changed: not in_room vacuum_cleaner living_room
+vacuum_cleaner>Move#32         Intention success
+vacuum_cleaner>OnlinePlanning#30 Intention success
+vacuum_cleaner                 Succesfully used intention OnlinePlanning to achieve goal PddlGoal#29[object Object]
+vacuum_cleaner>RetryFourTimesIntention_vc#29 Intention success
+vacuum_cleaner                 Succesfully used intention RetryFourTimesIntention_vc to achieve goal RetryGoal_vc#30[object Object]
+0:21:30 bedroom_light1  light turned on
+bedroom_light2  light turned on
+
+
+0:22:00 Mary  moved from living_room to entrance
+Mary  moved from entrance to hallway
+Mary  moved from hallway to bedroom
+John  moved from living_room to entrance
+John  moved from entrance to hallway
+John  moved from hallway to bedroom
+
+
+0:23:00 houseAgent                     Trying to use intention PostmanAcceptAllRequest to achieve goal Postman#33[object Object]
+houseAgent>PostmanAcceptAllRequest#33 Intention started
+Detected movement inside the garage
+living_room_light1  light turned off
+living_room_light2  light turned off
+living_room_light3  light turned off
+bedroom_light1  light turned off
+bedroom_light2  light turned off
+
+All residents go to sleep
+
+
+infraredCameraAgent>infraredCameraIntention#8 status garage_camera: movement_detected
+
+infraredCameraAgent            Belief changed: movement_detected
+houseAgent>PostmanAcceptAllRequest#33 Reading received message smartTiltingGoal#34[object Object]
+houseAgent                     Trying to use intention smartTiltingIntention to achieve goal smartTiltingGoal#34[object Object]
+houseAgent>smartTiltingIntention#34 Intention started
+The tilting is open
+0:23:45 ## REPORT OF CONSUMPTION: ##
+        - Electricity >         7.166 kW         1.8631600000000001 €
+        - Water >               22 L             0.03014 €
+
+
+- END OF TEST -
