@@ -1,21 +1,28 @@
-const Observable = require('../utils/Observable');
+const Agent = require('../bdi/Agent');
 
-class DeicingSystem extends Observable {
+class DeicingSystem extends Agent {
     constructor (house, name) {
         super(house, name); 
         this.house = house;
         this.name = name;
-        this.set('status', 'turn_off') 
+        this.status = 'off' 
     }
     switchOnSystem () {
-        if (this.status != 'turn_on')
+        if (this.status != 'on'){
             this.house.utilities.electricity.consumption += 2000;
-        this.status = 'turn_on'
-        console.log('Deicing system on')
+            this.status = 'on'
+            console.log('Deicing system ON')
+        }
+        else
+            console.log('Deicing system is already ON')
     }
     switchOffSystem () {
-        this.status = 'turn_off'
-        console.log('Deicing system off')
+        if (this.status != 'off'){
+            this.status = 'off'
+            console.log('Deicing system OFF')
+        }
+        else
+            console.log('Deicing system is already OFF')
     }
 }
 

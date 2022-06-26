@@ -5,38 +5,37 @@ class CarCharger extends Observable {
         super(house, name); 
         this.house = house;
         this.name = name
-        this.set('status', 'unplugged_min') 
+        this.set('status', 'unplugged') 
     }
+
     rechargeMaxPower () {
-        if (this.status != 'plugged_max')
-            this.house.utilities.electricity.consumption += 21;
-        this.status = 'plugged_max'
-        this.house.devices.garage_pump.beliefs.declare("awake car_charger")
-        this.house.devices.garage_pump.beliefs.undeclare("notawake car_charger")
-        console.log('Recharge car at maximum power started')
-    }
-    stopRechargeMax () {
-        this.status = 'unplugged_max'
-        this.house.devices.garage_pump.beliefs.declare("notawake car_charger")
-        this.house.devices.garage_pump.beliefs.undeclare("awake car_charger")
-        console.log('Recharge car at maximum power stopped')
+        if (this.status != 'plugged_max'){
+            this.house.utilities.electricity.consumption += 21000;
+            this.status = 'plugged_max'
+            this.house.devices.garage_pump.beliefs.declare("awake car_charger")
+            this.house.devices.garage_pump.beliefs.undeclare("notawake car_charger")
+            console.log('Start charging car at MAX power')
+        }
+        else
+            console.log('Car is already charging at MAX power')
     }
     rechargeMinPower () {
-        if (this.status != 'plugged_min')
-            this.house.utilities.electricity.consumption += 15;
-        this.status = 'plugged_min'
+        if (this.status != 'plugged_min'){
+            this.house.utilities.electricity.consumption += 14000;
+            this.status = 'plugged_min'
+            this.house.devices.garage_pump.beliefs.declare("awake car_charger")
+            this.house.devices.garage_pump.beliefs.undeclare("notawake car_charger")
+            console.log('Start charging car at MIN power')
+        }
+        else
+            console.log('Car is already charging at MIN power')
+    }
+    stopRecharge () {
+        this.status = 'unplugged'
         this.house.devices.garage_pump.beliefs.declare("notawake car_charger")
         this.house.devices.garage_pump.beliefs.undeclare("awake car_charger")
-        console.log('Recharge car at minimum power started')
-
+        console.log('Recharge car has been stopped')
     }
-    stopRechargeMin () {
-        this.status = 'unplugged_min'
-        this.house.devices.garage_pump.beliefs.declare("notawake car_charger")
-        this.house.devices.garage_pump.beliefs.undeclare("awake car_charger")
-        console.log('Recharge car at minimum power stopped')
-    }
-
 }
 
 module.exports = CarCharger;

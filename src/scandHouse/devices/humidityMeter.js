@@ -8,22 +8,14 @@ class HumidityMeter extends Observable {
         this.set('status', 'low_humidity') 
         this.set('humidity', 60)
     }
+    
     humidityDetected () {
         this.status = 'high_humidity'
-        console.log('High humidity detected in the bathroom')
+        console.log('High humidity detected from ' + this.name)
     }
     humidityNotDetected () {
         this.status = 'low_humidity'
-        console.log('Low humidity in the bathroom')
-    }
-    checkHumidity(){
-        if (this.humidity > 85) {
-            console.log('Humidity: ' + this.humidity + '%')
-            this.humidityDetected()
-        }
-        else{
-            this.humidityNotDetected()
-        }
+        console.log('Low humidity from ' + this.name)
     }
 }
 

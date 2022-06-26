@@ -20,7 +20,7 @@ The house is designed to be a *smart home*, focusing on the user experience, the
 
 This project aims is to implement user-friendly devices, based on real products available on the market and functions already applicable.
 
-The simulation developed in this project shows different interactions between the agents, how they control devices, their planning, and intentions. More details will be provided in the next sections.
+The simulation developed in this project shows different interactions between the agents, how they control devices, their planning, and intentions.
 
 ## Installation
 1. Install ```node``` from the [official website](https://nodejs.org/it/)

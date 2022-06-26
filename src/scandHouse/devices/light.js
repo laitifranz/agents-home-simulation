@@ -5,17 +5,25 @@ class Light extends Observable {
         super(house, name); 
         this.house = house;
         this.name = name; 
-        this.set('status', 'turn_off') 
+        this.set('status', 'off') 
     }
-    switchOnLight () {
-        if (this.status != 'turn_on')
+
+    turnOn () {
+        if (this.status != 'on'){
             this.house.utilities.electricity.consumption += 10;
-        this.status = 'turn_on'
-        console.log(this.name, ' light turned on')
+            this.status = 'on'
+            console.log(this.name + ' turned on')
+        }
+        else
+            console.log(this.name + ' is already on')
     }
-    switchOffLight () {
-        this.status = 'turn_off'
-        console.log(this.name, ' light turned off')
+    turnOff () {
+        if (this.status != 'off'){
+            this.status = 'off'
+            console.log(this.name + ' turned off')
+        }
+        else
+            console.log(this.name + ' is already off')
     }
 }
 

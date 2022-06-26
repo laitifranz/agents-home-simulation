@@ -7,12 +7,14 @@ class SmartTilting extends Observable {
         this.name = name; 
         this.set('status', 'close') 
     }
-    openTilting (l) {
+    openTilting () {
         this.status = 'open'
+        this.house.devices.garage_light.turnOn()
         console.log('The tilting is open')
     }
-    closeTilting (l) {
+    closeTilting () {
         this.status = 'close'
+        this.house.devices.garage_light.turnOff()
         console.log('The tilting is close')
     }
 }

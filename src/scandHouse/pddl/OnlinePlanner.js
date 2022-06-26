@@ -49,6 +49,7 @@ function setup (intentions = []) {
             // console.log(res.result.plan);
 
             if (!res.result.plan && res.result.output.split('\n')[0] != ' --- OK.') {
+                this.log(res.result.output)
                 this.log('No plan found')
                 this.log(res)
                 throw new Error('Plan not found');

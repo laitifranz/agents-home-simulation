@@ -3,23 +3,26 @@ const Observable = require('../utils/Observable');
 class SmartAirPurifier extends Observable {
     constructor (house, name) {
         super(house, name); 
-        this.house = house; // reference to the house
-        this.name = name; // non-observable
-        this.set('status') // observable
+        this.house = house;
+        this.name = name;
+        this.set('status')
     }
     switchOnPurifier () {
-        if (this.status != 'turn_on')
+        if (this.status != 'turn_on'){
             this.house.utilities.electricity.consumption += 500;
-        this.status = 'turn_on'
-        console.log('Air purifier is on')
+            this.status = 'turn_on'
+            console.log('Air purifier is ON')
+        }
+        else
+            console.log('Air purifier is already ON')
     }
     switchOffPurifier () {
         this.status = 'turn_off'
-        console.log('Air purifier is off')
+        console.log('Air purifier is OFF')
     }
     dirtyAirDetected () {
         this.status = 'dirty_air'
-        console.log('Dirty air detected in the kitchen')
+        console.log('Dirty air detected from ' + this.name)
         this.switchOnPurifier()
     }
 }

@@ -1,4 +1,4 @@
-const CarCharger = require('../devices/carCharger');
+const CarCharger = require('../devices/CarCharger');
 const Goal = require('../bdi/Goal');
 const Intention = require('../bdi/Intention');
 
@@ -28,10 +28,6 @@ class CarChargerIntention extends Intention {
     let carChargerPromise = new Promise(( async res => {
         while(true){
             let status = await this.carCharger.notifyChange('status')
-            this.agent.beliefs.declare('charging_min', status=='plugged_min')
-            this.agent.beliefs.declare('charging_max', status=='plugged_max')
-            this.agent.beliefs.declare('not_charging_min', status=='unplugged_min')
-            this.agent.beliefs.declare('not_charging_max', status=='unplugged_max')
             this.log('status ' + this.carCharger.name + ': ' + status + '\n');
         }
     }));

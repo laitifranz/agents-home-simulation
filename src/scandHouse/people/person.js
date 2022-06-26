@@ -9,7 +9,7 @@ class Person extends Observable {
         
     }
     moveTo (to) {
-        if ( this.house.rooms[this.in_room].doors_to.includes(to) ) { // for object: to in this.house.rooms[this.in_room].doors_to
+        if ( this.house.rooms[this.in_room].doors_to.includes(to) ) {
             console.log(this.name, ' moved from', this.in_room, 'to', to)
             this.in_room = to
             return true
@@ -18,6 +18,13 @@ class Person extends Observable {
             console.log(this.name, ' failed moving from', this.in_room, 'to', to)
             return false
         }
+    }
+    resetVacuumCleaner () {
+        if (this.name == 'Mario'){
+            console.log('Mario is too young, cannot perform the action')
+        }
+        else
+            this.house.devices.vacuum_cleaner.resetVacuum()
     }
 }
 

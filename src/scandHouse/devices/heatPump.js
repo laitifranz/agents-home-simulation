@@ -7,28 +7,37 @@ class HeatPump extends Agent {
         this.name = name;
         this.status = 'turn_off'
     }
-    switchOnPump () {
+
+    turnOn () {
         if (this.status != 'turn_on') {
-            this.house.utilities.electricity.consumption += 2000; 
+            this.house.utilities.electricity.consumption += 3000; 
             this.house.utilities.water.consumption += 15;
+            this.status = 'turn_on'
+            console.log('Heat pump is ON')
+            this.lowTemp()
         }
-        this.status = 'turn_on'
-        console.log('Heat pump on')
-        this.returnLowTemp()
     }
-    switchOffPump () {
+    turnOff () {
         this.status = 'turn_off'
-        console.log('Heat pump off')
+        console.log('Heat pump is OFF')
     }
-    turnHighTemp () {
-        if (this.status != 'maintain_high_temp')
+    highTemp () {
+        if (this.status != 'high_temp'){
             this.house.utilities.electricity.consumption += 4000;
-        this.status = 'maintain_high_temp'
-        console.log('High temperature (80 degrees) of heat pump on')
+            this.status = 'high_temp'
+            console.log('High temperature (80 degrees) set on heat pump')
+        }
+        else
+            console.log('Heat pump is already at 80 degrees')
     }
-    returnLowTemp () {
-        this.status = 'return_low_temp'
-        console.log('Low temperature (50 degrees) of heat pump on')
+    lowTemp () {
+        if (this.status != 'low_temp'){
+            this.house.utilities.electricity.consumption += 4000;
+            this.status = 'low_temp'
+            console.log('Low temperature (50 degrees) set on heat pump')
+        }
+        else
+            console.log('Heat pump is already at 50 degrees')
     }
 }
 

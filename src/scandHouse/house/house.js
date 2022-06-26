@@ -1,22 +1,25 @@
 //call devices
-const CarCharger = require('../devices/carCharger');
-const DeicingSystem = require('../devices/deicingSystem')
-const HeatPump = require('../devices/heatPump')
-const HumidityMeter = require('../devices/humidityMeter')
-const InfraredCamera = require('../devices/infraredCamera')
-const Light = require('../devices/light')
-const SmartAirPurifier = require('../devices/smartAirPurifier')
-const SmartLockDoor = require('../devices/smartDoorLock')
-const SmartTilting = require('../devices/smartTilting')
-const SolarPanel = require('../devices/solarPanel');
-const VacuumCleaner = require('../devices/vacuumCleaner');
-const Window = require('../devices/window')
+const CarCharger = require('../devices/CarCharger');
+const DeicingSystem = require('../devices/DeicingSystem')
+const HeatPump = require('../devices/HeatPump')
+const HumidityMeter = require('../devices/HumidityMeter')
+const InfraredCamera = require('../devices/InfraredCamera')
+const Light = require('../devices/Light')
+const SmartAirPurifier = require('../devices/SmartAirPurifier')
+const SmartLockDoor = require('../devices/SmartDoorLock')
+const SmartTilting = require('../devices/SmartTilting')
+const SolarPanel = require('../devices/SolarPanel');
+const VacuumCleaner = require('../devices/VacuumCleaner');
+const Window = require('../devices/Window')
+const MeteoSensor = require('../devices/MeteoSensor')
+const GardenRobot = require('../devices/GardenRobot');
 
 //call people
-const Person = require('../people/person')
+const Person = require('../people/Person')
 
 //call observable
-const Observable =  require('../utils/Observable')
+const Observable =  require('../utils/Observable');
+
 
 class House {
     constructor () {
@@ -48,15 +51,14 @@ class House {
                 light1:         new Light(this, 'living_room_light1'), 
                 light2:         new Light(this, 'living_room_light2'), 
                 light3:         new Light(this, 'living_room_light3') } ,
-
+            
             //kitchen   
             kitchen_lights:    {
                 light1:         new Light(this, 'kitchen_light1'), 
                 light2:         new Light(this, 'kitchen_light2'), 
                 light3:         new Light(this, 'kitchen_light3') } ,
             kitchen_air_pur:    new SmartAirPurifier(this, 'kitchen_air_pur'),
-            kitchen_windows:   {
-                window1:        new Window(this, 'kitchen_window1')},
+            kitchen_windows:    new Window(this, 'kitchen_window1'),
 
             //garage   
             garage_light:       new Light(this, 'garage_light'),
@@ -65,6 +67,11 @@ class House {
             garage_tilting:     new SmartTilting(this, 'garage_tilting'),       
             garage_deice_system:new DeicingSystem(this, 'garage_deice_system'),
             infrared_camera:    new InfraredCamera(this, 'garage_camera'),
+            garage_door_lock:   new SmartLockDoor(this, 'garage_door_lock'),
+            //meteo sensor
+            meteo_sensor:       new MeteoSensor(this, 'meteo_sensor'),
+            //robot garden
+            robot_garden:       new GardenRobot(this, 'robot_garden'),
 
         //first floor
             //hallway
@@ -93,9 +100,7 @@ class House {
             solar_panel:        new SolarPanel(this, 'solar_panel'),
 
             //vacuum_cleaner
-            vacuum_cleaner:     new VacuumCleaner(this, 'vacuum_cleaner'),
-            vacuum_cleaner_1:     new VacuumCleaner(this, 'vacuum_cleaner_2'),
-            
+            vacuum_cleaner:     new VacuumCleaner(this, 'vacuum_cleaner')
         }
 
         this.utilities = {

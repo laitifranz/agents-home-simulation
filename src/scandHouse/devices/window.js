@@ -9,10 +9,14 @@ class Window extends Observable {
     }
     openWindow () {
         this.status = 'open'
+        this.house.devices.garage_pump.beliefs.declare("open window_open")
+        this.house.devices.garage_pump.beliefs.declare("notopen window_open")
         console.log(this.name + ' is open')
     }
     closeWindow () {
         this.status = 'close'
+        this.house.devices.garage_pump.beliefs.declare("notopen window_open")
+        this.house.devices.garage_pump.beliefs.declare("open window_open")
         console.log(this.name + ' is close')
     }
 }

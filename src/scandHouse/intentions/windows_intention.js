@@ -1,17 +1,18 @@
-const window = require('../devices/window');
+const window = require('../devices/Window');
 const Goal = require('../bdi/Goal');
 const Intention = require('../bdi/Intention');
-const myHouse = require('../house/house');
-const MessageDispatcher = require('../utils/messagedispatcher');
+const myHouse = require('../house/House');
 
 class windowGoal extends Goal {
-  constructor(window, house) {
-    super(window, house);
+  constructor(window, house, state) {
+    super(window, house, state);
 
     /** @type {window} window */
     this.window = window;
     /** @type {myHouse} house */
     this.house = house;
+    /** @type {string} state */
+    this.state = state;
   }
 }
 
@@ -23,6 +24,8 @@ class windowIntention extends Intention {
     this.window = this.goal.window;
     /** @type {myHouse} house */
     this.house = this.goal.house;
+    /** @type {string} state */
+    this.state = this.goal.state;
   }
 
   static applicable(goal) {
@@ -31,15 +34,13 @@ class windowIntention extends Intention {
 
   *exec() {
     while(true){
-      var windowsGoals = [];
-      let windowsPromise = new Promise(( async res => {
-        this.window.openWindow()
-        let status = await this.window.notifyChange('status')
-        this.agent.beliefs.declare('window_open', status=='open')
-        this.agent.beliefs.declare('window_close', status=='close')
-      }));
-    windowsGoals.push(windowsPromise);
-    yield Promise.all(windowsGoals)
+      if ((this.window.status == 'close') && (this.state == 'open')){
+        this.window.openWindow();
+      }
+      yield
+      if((this.window.status == 'open') && (this.state == 'close')){
+        this.window.closeWindow();
+      }
       }
     }
 }

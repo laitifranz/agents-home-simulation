@@ -1,9 +1,8 @@
-const humidityMeter = require('../devices/humidityMeter');
+const humidityMeter = require('../devices/HumidityMeter');
 const Goal = require('../bdi/Goal');
 const Intention = require('../bdi/Intention');
 const {MessageDispatcher, Postman, PostmanAcceptAllRequest} = require('../utils/messagedispatcher');
 const {windowGoal, windowIntention} = require('./windows_intention');
-const House = require('../house/house');
 
 class humidityMeterGoal extends Goal {
   constructor(humidityMeter, house) {
@@ -35,13 +34,11 @@ class humidityMeterIntention extends Intention {
     var humidityMeterGoals = [];
     let humidityMeterPromise = new Promise(( async res => {
         while(true){
-            let status = await this.humidityMeter.notifyChange('status')
-            this.log('status ' + this.humidityMeter.name + ': ' + status + '\n');
-            this.agent.beliefs.declare('humidity_meter_low', status=='low_humidity')
-            this.agent.beliefs.declare('humidity_meter_high', status=='high_humidity')
-            if (status == 'high_humidity'){
-              MessageDispatcher.authenticate(this.agent).sendTo('houseAgent', new windowGoal(this.house.devices.bathroom_window, this.house));
-          }
+            let humidity = await this.humidityMeter.notifyChange('humidity')
+            if (humidity > 85) {
+              console.log('Humidity: ' + humidity + '%')
+              MessageDispatcher.authenticate(this.agent).sendTo('houseAgent', new windowGoal(this.house.devices.bathroom_window, this.house, 'open'));
+            }
         }
     }));
 

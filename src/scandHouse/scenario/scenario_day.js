@@ -1,12 +1,11 @@
 //call house
-const House = require('../house/house')
+const House = require('../house/House')
 
 //call utils
 const Clock =  require('../utils/Clock')
 
 //call bdi
 const Agent = require('../bdi/Agent')
-const {AlarmGoal, AlarmIntention} = require('../intentions/alarm_intention')
 const {CarChargerGoal, CarChargerIntention} = require('../intentions/carCharger_intention')
 const {humidityMeterGoal, humidityMeterIntention} = require('../intentions/humidityMeter_intention')
 const {smartAirPurifierGoal, smartAirPurifierIntention} = require('../intentions/smartAirPurifier_intention')
@@ -14,8 +13,10 @@ const {windowGoal, windowIntention} = require('../intentions/windows_intention')
 const {infraredCameraGoal, infraredCameraIntention} = require('../intentions/infraredCamera_intention')
 const {smartTiltingGoal, smartTiltingIntention} = require('../intentions/smartTilting_intention')
 const {MessageDispatcher, Postman, PostmanAcceptAllRequest} = require('../utils/messagedispatcher');
-const {LightGoal, LightIntention} = require('../intentions/light_intention')
 const {smartDoorLockGoal, smartDoorLockIntention} = require('../intentions/smartDoorLock_intention')
+const {meteoSensorGoal, meteoSensorIntention} = require('../intentions/meteoSensor_intention')
+const {RetryGoal, RetryFourTimesIntention}  = require('../utils/RetryGoal')
+const {smartDoorLockGoal_lock, smartDoorLockIntention_lock} = require('../intentions/smartDoorLock_intention_lock')
 
 // House, which includes rooms and devices
 var myHouse = new House()
@@ -23,17 +24,24 @@ var myHouse = new House()
 // Agents
 var houseAgent = new Agent('houseAgent')
 var smartAirAgent = new Agent('smartAirAgent')
-var humidityAgent = new Agent('humidityAgent')
 var infraredCameraAgent = new Agent('infraredCameraAgent')
-
-houseAgent.intentions.push(AlarmIntention)
-houseAgent.postSubGoal( new AlarmGoal({hh:5, mm:30}) )
 
 houseAgent.intentions.push(CarChargerIntention);
 houseAgent.postSubGoal(new CarChargerGoal(myHouse.devices.garage_car_charger));
+houseAgent.intentions.push(meteoSensorIntention)
+houseAgent.postSubGoal(new meteoSensorGoal(myHouse.devices.meteo_sensor));
+houseAgent.intentions.push(meteoSensorIntention)
+houseAgent.postSubGoal(new meteoSensorGoal(myHouse.devices.meteo_sensor));
 houseAgent.intentions.push(smartTiltingIntention)
+houseAgent.postSubGoal(new smartTiltingGoal(myHouse.devices.garage_tilting, myHouse));
 houseAgent.intentions.push(windowIntention)
+houseAgent.intentions.push(humidityMeterIntention)
+houseAgent.postSubGoal(new humidityMeterGoal(myHouse.devices.bathroom_meter, myHouse))
 houseAgent.intentions.push(smartDoorLockIntention)
+houseAgent.intentions.push(smartDoorLockIntention_lock)
+houseAgent.postSubGoal(new smartDoorLockGoal(myHouse.devices.baby_room_door, myHouse))
+houseAgent.postSubGoal(new smartDoorLockGoal(myHouse.devices.entrance_door, myHouse))
+houseAgent.postSubGoal(new smartDoorLockGoal(myHouse.devices.garage_door_lock, myHouse))
 houseAgent.intentions.push(PostmanAcceptAllRequest)
 houseAgent.postSubGoal(new Postman())
 
@@ -42,67 +50,53 @@ smartAirAgent.intentions.push(PostmanAcceptAllRequest)
 smartAirAgent.postSubGoal(new Postman())
 smartAirAgent.postSubGoal(new smartAirPurifierGoal(myHouse.devices.kitchen_air_pur, myHouse))
 
-humidityAgent.intentions.push(humidityMeterIntention)
-humidityAgent.intentions.push(PostmanAcceptAllRequest)
-humidityAgent.postSubGoal(new Postman())
-humidityAgent.postSubGoal(new humidityMeterGoal(myHouse.devices.bathroom_meter, myHouse))
-
 infraredCameraAgent.intentions.push(infraredCameraIntention)
 infraredCameraAgent.intentions.push(PostmanAcceptAllRequest)
 infraredCameraAgent.postSubGoal(new Postman())
 infraredCameraAgent.postSubGoal(new infraredCameraGoal(myHouse.devices.infrared_camera, myHouse))
 
 //PDDL Vacuum Cleaner
-var PlanningGoal = require('../pddl/PlanningGoal')
-const {Move, SwitchOn, SwitchOff,  RetryGoal_vc, RetryFourTimesIntention_vc} = require('../pddl_script/vacuum_pddl')
-let {OnlinePlanning} = require('../pddl/OnlinePlanner')([Move, SwitchOn, SwitchOff])
+const {Move, SwitchOn, SwitchOff, Clean, CleanAll, ReturnToBase, ExitFromBase, LastTask} = require('../pddl_script/VacuumPddl')
+let {OnlinePlanning} = require('../pddl/OnlinePlanner')([Move, SwitchOn, SwitchOff, Clean, CleanAll, ReturnToBase, ExitFromBase, LastTask])
 
-//ground floor vacuum cleaner
 myHouse.devices.vacuum_cleaner.intentions.push(OnlinePlanning)
-myHouse.devices.vacuum_cleaner.intentions.push(RetryFourTimesIntention_vc)
+myHouse.devices.vacuum_cleaner.intentions.push(RetryFourTimesIntention)
 
-myHouse.devices.vacuum_cleaner.beliefs.declare("room entrance")
-myHouse.devices.vacuum_cleaner.beliefs.declare("room living_room")
-myHouse.devices.vacuum_cleaner.beliefs.declare("room kitchen")
+myHouse.devices.vacuum_cleaner.beliefs.declare("room hallway")
+myHouse.devices.vacuum_cleaner.beliefs.declare("room bathroom")
+myHouse.devices.vacuum_cleaner.beliefs.declare("room bedroom")
+myHouse.devices.vacuum_cleaner.beliefs.declare("room baby_room")
+
+myHouse.devices.vacuum_cleaner.beliefs.declare("room1 hallway")
+myHouse.devices.vacuum_cleaner.beliefs.declare("room2 bathroom")
+myHouse.devices.vacuum_cleaner.beliefs.declare("room3 bedroom")
+myHouse.devices.vacuum_cleaner.beliefs.declare("room4 baby_room")
+
 myHouse.devices.vacuum_cleaner.beliefs.declare("vacuum vacuum_cleaner")
 
-myHouse.devices.vacuum_cleaner.beliefs.declare("adj entrance living_room")
-myHouse.devices.vacuum_cleaner.beliefs.declare("adj living_room entrance")
-myHouse.devices.vacuum_cleaner.beliefs.declare("adj living_room kitchen")
-myHouse.devices.vacuum_cleaner.beliefs.declare("adj kitchen living_room")
+myHouse.devices.vacuum_cleaner.beliefs.declare("adj hallway bathroom")
+myHouse.devices.vacuum_cleaner.beliefs.declare("adj bathroom hallway")
+myHouse.devices.vacuum_cleaner.beliefs.declare("adj hallway bedroom")
+myHouse.devices.vacuum_cleaner.beliefs.declare("adj bedroom hallway")
+myHouse.devices.vacuum_cleaner.beliefs.declare("adj hallway baby_room")
+myHouse.devices.vacuum_cleaner.beliefs.declare("adj baby_room hallway")
 
-myHouse.devices.vacuum_cleaner.beliefs.declare("in_room vacuum_cleaner entrance")
+myHouse.devices.vacuum_cleaner.beliefs.declare("not_cleaned hallway")
+myHouse.devices.vacuum_cleaner.beliefs.declare("not_cleaned bathroom")
+myHouse.devices.vacuum_cleaner.beliefs.declare("not_cleaned bedroom")
+myHouse.devices.vacuum_cleaner.beliefs.declare("not_cleaned baby_room")
+myHouse.devices.vacuum_cleaner.beliefs.declare("in_base vacuum_cleaner")
+myHouse.devices.vacuum_cleaner.beliefs.declare("in_room vacuum_cleaner hallway")
 
 myHouse.devices.vacuum_cleaner.beliefs.declare("switch_off vacuum_cleaner")
 
-//first floor vacuum cleaner
-myHouse.devices.vacuum_cleaner_1.intentions.push(OnlinePlanning)
-myHouse.devices.vacuum_cleaner_1.intentions.push(RetryFourTimesIntention_vc)
-
-myHouse.devices.vacuum_cleaner_1.beliefs.declare("room hallway")
-myHouse.devices.vacuum_cleaner_1.beliefs.declare("room bathroom")
-myHouse.devices.vacuum_cleaner_1.beliefs.declare("room bedroom")
-myHouse.devices.vacuum_cleaner_1.beliefs.declare("room baby_room")
-myHouse.devices.vacuum_cleaner_1.beliefs.declare("vacuum vacuum_cleaner_1")
-
-myHouse.devices.vacuum_cleaner_1.beliefs.declare("adj hallway bathroom")
-myHouse.devices.vacuum_cleaner_1.beliefs.declare("adj bathroom hallway")
-myHouse.devices.vacuum_cleaner_1.beliefs.declare("adj bathroom bedroom")
-myHouse.devices.vacuum_cleaner_1.beliefs.declare("adj bedroom bathroom")
-myHouse.devices.vacuum_cleaner_1.beliefs.declare("adj bedroom baby_room")
-myHouse.devices.vacuum_cleaner_1.beliefs.declare("adj baby_room bedroom")
-
-myHouse.devices.vacuum_cleaner_1.beliefs.declare("in_room vacuum_cleaner_1 hallway")
-
-myHouse.devices.vacuum_cleaner_1.beliefs.declare("switch_off vacuum_cleaner_1")
-
 
 //PDDL HeatPump
-const {SwitchOn_hp, SwitchOff_hp, setTemp_high, setTemp_low, RetryGoal_hp, RetryFourTimesIntention_hp} = require('../pddl_script/heatpump_pddl')
-let {OnlinePlanning: OnlinePlanner1} = require('../pddl/OnlinePlanner')([SwitchOn_hp, SwitchOff_hp, setTemp_high, setTemp_low])
+const {SwitchOn_hp, SwitchOff_hp, setTempHigh, setTempLow} = require('../pddl_script/HeatPumpPddl')
+let {OnlinePlanning: OnlinePlanner_hp} = require('../pddl/OnlinePlanner')([SwitchOn_hp, SwitchOff_hp, setTempHigh, setTempLow])
 
-myHouse.devices.garage_pump.intentions.push(OnlinePlanner1)
-myHouse.devices.garage_pump.intentions.push(RetryFourTimesIntention_hp)
+myHouse.devices.garage_pump.intentions.push(OnlinePlanner_hp)
+myHouse.devices.garage_pump.intentions.push(RetryFourTimesIntention)
 
 myHouse.devices.garage_pump.beliefs.declare("heatpump heat_pump")
 myHouse.devices.garage_pump.beliefs.declare("solarpanel solar_panel")
@@ -115,7 +109,62 @@ myHouse.devices.garage_pump.beliefs.declare("notawake solar_panel")
 myHouse.devices.garage_pump.beliefs.declare("notawake car_charger")
 myHouse.devices.garage_pump.beliefs.declare("notopen window_open")
 
-// Simulate daily schedule
+//PDDL DeicingMachine
+const {TurnOn, TurnOff} = require('../pddl_script/DeicingPddl')
+let {OnlinePlanning: OnlinePlanner_ds} = require('../pddl/OnlinePlanner')([TurnOn, TurnOff])
+
+myHouse.devices.garage_deice_system.intentions.push(OnlinePlanner_ds)
+myHouse.devices.garage_deice_system.intentions.push(RetryFourTimesIntention)
+
+myHouse.devices.garage_deice_system.beliefs.declare('deicing deicing_system')
+myHouse.devices.garage_deice_system.beliefs.declare('off deicing_system')
+myHouse.devices.garage_deice_system.beliefs.declare('state under_zero')
+myHouse.devices.garage_deice_system.beliefs.declare('temperature over_zero')
+
+//PDDL GarderRobot
+const {Move_gr, SwitchOn_gr, SwitchOff_gr, CutGrass, CutAll, ReturnToBase_gr, ExitFromBase_gr, LastTask_gr} = require('../pddl_script/RobotGardenPddl')
+let {OnlinePlanning: OnlinePlanner_gr} = require('../pddl/OnlinePlanner')([Move_gr, SwitchOn_gr, SwitchOff_gr, CutGrass, CutAll, ReturnToBase_gr, ExitFromBase_gr, LastTask_gr])
+
+myHouse.devices.robot_garden.intentions.push(OnlinePlanner_gr)
+myHouse.devices.robot_garden.intentions.push(RetryFourTimesIntention)
+
+myHouse.devices.robot_garden.beliefs.declare("field garage")
+myHouse.devices.robot_garden.beliefs.declare("field entrance")
+myHouse.devices.robot_garden.beliefs.declare("field living_room")
+myHouse.devices.robot_garden.beliefs.declare("field kitchen")
+
+myHouse.devices.robot_garden.beliefs.declare("field1 garage")
+myHouse.devices.robot_garden.beliefs.declare("field2 entrance")
+myHouse.devices.robot_garden.beliefs.declare("field3 living_room")
+myHouse.devices.robot_garden.beliefs.declare("field4 kitchen")
+
+myHouse.devices.robot_garden.beliefs.declare("gardenrobot robot_garden")
+
+myHouse.devices.robot_garden.beliefs.declare("adj garage entrance")
+myHouse.devices.robot_garden.beliefs.declare("adj entrance garage")
+myHouse.devices.robot_garden.beliefs.declare("adj entrance kitchen")
+myHouse.devices.robot_garden.beliefs.declare("adj kitchen entrance")
+myHouse.devices.robot_garden.beliefs.declare("adj kitchen living_room")
+myHouse.devices.robot_garden.beliefs.declare("adj living_room kitchen")
+myHouse.devices.robot_garden.beliefs.declare("adj living_room garage")
+myHouse.devices.robot_garden.beliefs.declare("adj garage living_room")
+
+myHouse.devices.robot_garden.beliefs.declare("not_cut entrance")
+myHouse.devices.robot_garden.beliefs.declare("not_cut garage")
+myHouse.devices.robot_garden.beliefs.declare("not_cut kitchen")
+myHouse.devices.robot_garden.beliefs.declare("not_cut living_room")
+
+myHouse.devices.robot_garden.beliefs.declare("in_base robot_garden")
+myHouse.devices.robot_garden.beliefs.declare("in_field robot_garden garage")
+
+myHouse.devices.robot_garden.beliefs.declare("switch_off robot_garden")
+
+myHouse.devices.robot_garden.beliefs.declare("weather good")
+myHouse.devices.robot_garden.beliefs.declare("status_weather good")
+
+myHouse.devices.robot_garden.beliefs.declare('state over_zero')
+
+// Simulate a day
 
 console.log('- START OF TEST -\n')
 myHouse.people.mario.moveTo('baby_room')
@@ -123,166 +172,30 @@ myHouse.people.mario.moveTo('baby_room')
 Clock.global.observe('mm', (key, mm) => {
     var time = Clock.global
     if (time.dd==0) {
-        if(time.hh==6 && time.mm==0){
-            myHouse.devices.infrared_camera.switchOffInfrared()
-
-            myHouse.devices.kitchen_air_pur.dirtyAirDetected()
-
-            myHouse.devices.bedroom_lights.light1.switchOnLight()
-            myHouse.devices.bedroom_lights.light2.switchOnLight()
-
-            myHouse.devices.kitchen_lights.light1.switchOnLight()
-            myHouse.devices.kitchen_lights.light2.switchOnLight()
-            myHouse.devices.kitchen_lights.light3.switchOnLight()
-
-            myHouse.people.john.moveTo('hallway')
-            myHouse.people.john.moveTo('entrance')
-            myHouse.people.john.moveTo('living_room')
-            myHouse.people.john.moveTo('kitchen')
-
-            console.log('\n')
+        if(time.hh==0 && time.mm==0){
+            //just for putting all the initial beliefs at the beginning of the log
         }
-        if(time.hh==6 && time.mm==30){
-            myHouse.devices.living_room_lights.light1.switchOnLight()
-            myHouse.devices.living_room_lights.light2.switchOnLight()
-            myHouse.devices.living_room_lights.light3.switchOnLight()
-
-
-            console.log('\n')
+        if(time.hh==0 && time.mm==30){
+            console.log('- Simulate the change of temperature > new temperature = -2° -\n')
+            myHouse.devices.meteo_sensor.temperature = -2
         }
-        if(time.hh==7 && time.mm==45){
-            myHouse.devices.solar_panel.energyAvailable()
-
-            houseAgent.postSubGoal(new Postman())
-            myHouse.devices.infrared_camera.movementDetected()
-
-            myHouse.devices.garage_car_charger.stopRechargeMin()
-            myHouse.devices.garage_car_charger.rechargeMaxPower()
-
-            console.log('\n')
+        if(time.hh==4 && time.mm==30){
+            console.log('- Simulate the change of weather > new weather condition = rainy -\n')
+            myHouse.devices.meteo_sensor.forecast_today = 'rainy'
         }
         if(time.hh==8 && time.mm==30){
-            myHouse.devices.bedroom_lights.light1.switchOffLight()
-            myHouse.devices.bedroom_lights.light2.switchOffLight()
-
-            myHouse.people.mary.moveTo('hallway')
-            myHouse.people.mary.moveTo('entrance')
-            myHouse.people.mary.moveTo('living_room')
-            myHouse.people.mary.moveTo('kitchen')
-
-            myHouse.people.john.moveTo('living_room')
-            myHouse.people.john.moveTo('entrance')
-            myHouse.people.john.moveTo('garage')
-
-            myHouse.devices.garage_car_charger.stopRechargeMax()
-            console.log('\n')
-        }    
-        if(time.hh==9 && time.mm==0){
-            myHouse.people.mary.moveTo('living_room')
-            myHouse.people.mary.moveTo('entrance')
-            myHouse.people.mary.moveTo('garage')
-
-            myHouse.devices.living_room_lights.light1.switchOffLight()
-            myHouse.devices.living_room_lights.light2.switchOffLight()
-            myHouse.devices.living_room_lights.light3.switchOffLight()
-
-            myHouse.devices.kitchen_lights.light1.switchOffLight()
-            myHouse.devices.kitchen_lights.light2.switchOffLight()
-            myHouse.devices.kitchen_lights.light3.switchOffLight()
-
-            myHouse.devices.garage_tilting.closeTilting()
-
-            console.log('\n')
-        }
-        if(time.hh==9 && time.mm==30){
-            myHouse.devices.solar_panel.energyAvailable()
-            myHouse.devices.garage_car_charger.stopRechargeMax()
-            myHouse.devices.garage_pump.postSubGoal( new RetryGoal_hp( { goal: new PlanningGoal( { goal: ['set_temp_high heat_pump'] } ) } ) )
-
-            console.log('\n')
-        }
-        if(time.hh==10 && time.mm==30){
-            myHouse.devices.vacuum_cleaner.postSubGoal( new RetryGoal_vc( { goal: new PlanningGoal( { goal: ['in_room vacuum_cleaner kitchen'] } ) } ) )
-        }
-        if(time.hh==11 && time.mm==15){
-            houseAgent.postSubGoal(new Postman())
-            myHouse.devices.bathroom_meter.humidity = 88
-            myHouse.devices.bathroom_meter.checkHumidity()
-            
-            console.log('\n')
-        }
-        if(time.hh==12 && time.mm==00){
-            myHouse.devices.vacuum_cleaner_1.postSubGoal( new RetryGoal_vc( { goal: new PlanningGoal( { goal: ['in_room vacuum_cleaner_1 baby_room'] } ) } ) )
-            
-            console.log('\n')
+            console.log('- Simulate the change of weather > new weather condition = sunny -\n')
+            myHouse.devices.meteo_sensor.forecast_today = 'sunny'
         }
         if(time.hh==16 && time.mm==30){
-            myHouse.people.mary.moveTo('entrance')
-            myHouse.people.mary.moveTo('living_room')
-
-            console.log('\n')
+            myHouse.people.mario.resetVacuumCleaner()
         }
-        if(time.hh==17 && time.mm==45){
-            myHouse.devices.solar_panel.noEnergyAvailable()
-
-            myHouse.devices.living_room_lights.light1.switchOnLight()
-            myHouse.devices.living_room_lights.light2.switchOnLight()
-            myHouse.devices.living_room_lights.light3.switchOnLight()
-            
-            myHouse.devices.infrared_camera.switchOnInfrared()
-
-            console.log('\n')
+        if(time.hh==16 && time.mm==45){
+            myHouse.people.john.resetVacuumCleaner()
         }
-        if(time.hh==18 && time.mm==30){
-            myHouse.people.john.moveTo('entrance')
-            myHouse.people.john.moveTo('living_room')
-
-            myHouse.devices.solar_panel.noEnergyAvailable()
-            myHouse.devices.garage_car_charger.rechargeMinPower()
-            
-            console.log('\n')
-        }
-        if(time.hh==19 && time.mm==0){
-            myHouse.people.john.moveTo('kitchen')
-            myHouse.devices.infrared_camera.switchOnInfrared()
-
-            console.log('\n')
-        }
-        if(time.hh==19 && time.mm==30){
-            myHouse.people.john.moveTo('living_room')
-            myHouse.devices.vacuum_cleaner.postSubGoal( new RetryGoal_vc( { goal: new PlanningGoal( { goal: ['in_room vacuum_cleaner entrance'] } ) } ) )
-            
-            console.log('\n')
-        }
-        if(time.hh==21 && time.mm==30){
-            myHouse.devices.bedroom_lights.light1.switchOnLight()
-            myHouse.devices.bedroom_lights.light2.switchOnLight()
-
-            console.log('\n')
-        }
-        if(time.hh==22 && time.mm==0){
-            myHouse.people.mary.moveTo('entrance')
-            myHouse.people.mary.moveTo('hallway')
-            myHouse.people.mary.moveTo('bedroom')
-
-            myHouse.people.john.moveTo('entrance')
-            myHouse.people.john.moveTo('hallway')
-            myHouse.people.john.moveTo('bedroom')
-
-            console.log('\n')
-        }
-        if(time.hh==23 && time.mm==00){
-            houseAgent.postSubGoal(new Postman())
-            myHouse.devices.infrared_camera.movementDetected()
-            myHouse.devices.living_room_lights.light1.switchOffLight()
-            myHouse.devices.living_room_lights.light2.switchOffLight()
-            myHouse.devices.living_room_lights.light3.switchOffLight()
-
-            myHouse.devices.bedroom_lights.light1.switchOffLight()
-            myHouse.devices.bedroom_lights.light2.switchOffLight()
-            
-            console.log('\nAll residents go to sleep')
-            console.log('\n')
+        if(time.hh==19 && time.mm==00){
+            console.log('- Simulate the change of humidity > new humidity value = 88 % -\n')
+            myHouse.devices.bathroom_meter.humidity = 88
         }
         if(time.hh==23 && time.mm==45){
             Clock.stopTimer()

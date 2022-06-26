@@ -1,7 +1,7 @@
-const smartDoorLock = require('../devices/smartDoorLock');
+const smartDoorLock = require('../devices/SmartDoorLock');
 const Goal = require('../bdi/Goal');
 const Intention = require('../bdi/Intention');
-const {LightGoal, LightIntention} = require('../intentions/light_intention')
+const Clock = require('../utils/Clock');
 
 class smartDoorLockGoal extends Goal {
   constructor(smartDoorLock) {
@@ -25,19 +25,14 @@ class smartDoorLockIntention extends Intention {
   }
 
   *exec() {
-    var smartDoorLockGoals = [];
-    let smartDoorLockPromise = new Promise(( async res => {
         while(true){
-            let status = await this.smartDoorLock.notifyChange('status')
-            this.agent.beliefs.declare('lock', status=='lock')
-            this.agent.beliefs.declare('unlock', status=='unlock')
-            this.log('status ' + this.smartDoorLock.name + ': ' + status + '\n');
-            this.agent.postSubGoal(new LightGoal(this.agent.house.devices.entrance_light))
+          Clock.global.notifyChange('mm');
+          yield
+          if (Clock.global.hh == 22 && Clock.global.mm == 30) {
+              this.smartDoorLock.lock();
+              break;
+          }
         }
-    }));
-
-    smartDoorLockGoals.push(smartDoorLockPromise);
-    yield Promise.all(smartDoorLockGoals)
     }
 }
 

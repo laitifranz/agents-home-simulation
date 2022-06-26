@@ -1,11 +1,8 @@
-const infraredCamera = require('../devices/infraredCamera');
+const infraredCamera = require('../devices/InfraredCamera');
 const Goal = require('../bdi/Goal');
 const Intention = require('../bdi/Intention');
 const {MessageDispatcher, Postman, PostmanAcceptAllRequest} = require('../utils/messagedispatcher');
-//const {windowGoal, windowIntention} = require('./windows_intention');
-const {smartTiltingGoal, smartTiltingIntention} = require('./smartTilting_intention');
-const house = require('../house/house');
-const Clock = require('../utils/clock');
+const { smartDoorLockGoal_lock } = require('./smartDoorLock_intention_lock');
 
 class infraredCameraGoal extends Goal {
   constructor(infraredCamera, house) {
@@ -38,9 +35,8 @@ class infraredCameraIntention extends Intention {
         while(true){
             let status = await this.infraredCamera.notifyChange('status')
             this.log('status ' + this.infraredCamera.name + ': ' + status + '\n');
-            this.agent.beliefs.declare('movement_detected', status=='movement_detected')
-            if ((status == 'movement_detected')){
-                MessageDispatcher.authenticate(this.agent).sendTo('houseAgent', new smartTiltingGoal(this.house.devices.garage_tilting, this.house));
+            if ((status == 'move_detect')){
+                MessageDispatcher.authenticate(this.agent).sendTo('houseAgent', new smartDoorLockGoal_lock(this.house.devices.garage_door_lock, 'lock'));
             }
         }
     }));

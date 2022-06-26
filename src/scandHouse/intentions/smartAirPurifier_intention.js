@@ -1,9 +1,8 @@
-const smartAirPurifier = require('../devices/smartAirPurifier');
+const smartAirPurifier = require('../devices/SmartAirPurifier');
 const Goal = require('../bdi/Goal');
 const Intention = require('../bdi/Intention');
 const {MessageDispatcher, Postman, PostmanAcceptAllRequest} = require('../utils/messagedispatcher');
 const {windowGoal, windowIntention} = require('./windows_intention');
-const house = require('../house/house');
 
 
 class smartAirPurifierGoal extends Goal {
@@ -37,9 +36,8 @@ class smartAirPurifierIntention extends Intention {
         while(true){
             let status = await this.smartAirPurifier.notifyChange('status')
             this.log('status ' + this.smartAirPurifier.name + ': ' + status + '\n');
-            this.agent.beliefs.declare('dirty_air', status=='dirty_air')
             if (status == 'dirty_air'){
-              MessageDispatcher.authenticate(this.agent).sendTo('houseAgent', new windowGoal(this.house.devices.kitchen_windows.window1, this.house));
+              MessageDispatcher.authenticate(this.agent).sendTo('houseAgent', new windowGoal(this.house.devices.kitchen_windows, this.house, 'open'));
           }
         }
     }));

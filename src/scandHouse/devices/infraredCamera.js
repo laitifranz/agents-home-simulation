@@ -5,21 +5,27 @@ class InfraredCamera extends Observable {
         super(house, name); 
         this.house = house;
         this.name = name;
-        this.set('status', 'off_infrared') 
+        this.set('status', 'no_move_detect') 
+        this.set('infrared', false)
     }
     movementDetected () {
-        this.status = 'movement_detected'
-        console.log('Detected movement inside the garage')
+        this.status = 'move_detect'
+        console.log('ALERT! Detected movement from ' + this.name)
+        this.status = 'no_move_detect'
     }
     switchOnInfrared () {
-        if (this.status != 'on_infrared')
-            this.house.utilities.electricity.consumption += 200;
-        this.status = 'on_infrared'
-        console.log('Infrared camera is on')
+        if (!this.infrared){
+            this.house.utilities.electricity.consumption += 300;
+            this.infrared = true
+            console.log('Infrared of ' + this.name + ' is ON')
+        }
     }
     switchOffInfrared () {
-        this.status = 'off_infrared'
-        console.log('Infrared camera is off')
+        if (this.infrared){
+            this.house.utilities.electricity.consumption += 100;
+            this.infrared = false
+            console.log('Infrared of ' + this.name + ' is OFF')
+        }
     }
 }
 

@@ -1,9 +1,7 @@
-const smartTilting = require('../devices/smartTilting');
+const smartTilting = require('../devices/SmartTilting');
 const Goal = require('../bdi/Goal');
 const Intention = require('../bdi/Intention');
-const {MessageDispatcher, Postman, PostmanAcceptAllRequest} = require('../utils/messagedispatcher');
-//const {windowGoal, windowIntention} = require('./windows_intention');
-const house = require('../house/house');
+const Clock = require('../utils/Clock');
 
 
 class smartTiltingGoal extends Goal {
@@ -32,18 +30,19 @@ class smartTiltingIntention extends Intention {
   }
 
   *exec() {
-    while(true){
-      var smartTiltingGoals = [];
-      let smartTiltingPromise = new Promise(( async res => {
-          this.smartTilting.openTilting()
-          let status = await this.smartTilting.notifyChange('status')
-          this.agent.beliefs.declare('smarttilt_open', status=='open')
-          this.agent.beliefs.declare('smarttilt_close', status=='close')
-    }));
-
-    smartTiltingGoals.push(smartTiltingPromise);
-    yield Promise.all(smartTiltingGoals)
-    }
+    var check = false //for avoiding multiple execution of the same if-else statement
+    while(true) {
+      Clock.global.notifyChange('mm');
+      if (Clock.global.hh == 7 && Clock.global.mm == 0 && !check) {
+          check = true
+          this.smartTilting.openTilting();
+      }
+      yield
+      if (Clock.global.hh == 9 && Clock.global.mm == 0 && check){
+        check = false
+        this.smartTilting.closeTilting();
+      }
+  }
 }
 }
 
