@@ -1,6 +1,6 @@
-const Agent = require('../bdi/Agent');
+const Observable = require('../utils/Observable');
 
-class HeatPump extends Agent {
+class HeatPump extends Observable {
     constructor (house, name) {
         super(house, name); 
         this.house = house;

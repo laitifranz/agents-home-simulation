@@ -19,12 +19,12 @@ class Person extends Observable {
             return false
         }
     }
-    resetVacuumCleaner () {
+    resetVacuumCleaner (vacuumDevice) {
         if (this.name == 'Mario'){
             console.log('Mario is too young, cannot perform the action')
         }
         else
-            this.house.devices.vacuum_cleaner.resetVacuum()
+            vacuumDevice.resetVacuum()
     }
 }
 

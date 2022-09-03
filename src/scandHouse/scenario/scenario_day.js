@@ -1,39 +1,32 @@
-//call house
-const House = require('../house/House')
+//SCENARIO DAY
 
-//call utils
 const Clock =  require('../utils/Clock')
 
-//call bdi
-const Agent = require('../bdi/Agent')
-const {CarChargerGoal, CarChargerIntention} = require('../intentions/carCharger_intention')
-const {humidityMeterGoal, humidityMeterIntention} = require('../intentions/humidityMeter_intention')
-const {smartAirPurifierGoal, smartAirPurifierIntention} = require('../intentions/smartAirPurifier_intention')
-const {windowGoal, windowIntention} = require('../intentions/windows_intention')
-const {infraredCameraGoal, infraredCameraIntention} = require('../intentions/infraredCamera_intention')
-const {smartTiltingGoal, smartTiltingIntention} = require('../intentions/smartTilting_intention')
+const {SolarPanel, solarPanelGoal, solarPanelIntention} = require('../devices/SolarPanel')
+const {CarCharger, CarChargerGoal, CarChargerIntention} = require('../devices/CarCharger')
+const {HumidityMeter, humidityMeterGoal, humidityMeterIntention} = require('../devices/HumidityMeter')
+const {Window, windowGoal, windowIntention} = require('../devices/Window')
+const {OpenCloseTiltingGoal, OpenCloseTiltingIntention} = require('../devices/SmartTilting')
 const {MessageDispatcher, Postman, PostmanAcceptAllRequest} = require('../utils/messagedispatcher');
-const {smartDoorLockGoal, smartDoorLockIntention} = require('../intentions/smartDoorLock_intention')
-const {meteoSensorGoal, meteoSensorIntention} = require('../intentions/meteoSensor_intention')
+const {SmartLockDoor, smartDoorLockGoal, smartDoorLockIntention, smartDoorLockGoal_lock, smartDoorLockIntention_lock} = require('../devices/SmartDoorLock')
+const {MeteoSensor, meteoSensorGoal, meteoSensorIntention} = require('../devices/MeteoSensor')
 const {RetryGoal, RetryFourTimesIntention}  = require('../utils/RetryGoal')
-const {smartDoorLockGoal_lock, smartDoorLockIntention_lock} = require('../intentions/smartDoorLock_intention_lock')
+const {DeicingSystem, DeicingSystemGoal, DeicingSystemIntention} = require('../devices/DeicingSystem')
 
 // House, which includes rooms and devices
+const House = require('../house/House')
 var myHouse = new House()
 
-// Agents
-var houseAgent = new Agent('houseAgent')
-var smartAirAgent = new Agent('smartAirAgent')
-var infraredCameraAgent = new Agent('infraredCameraAgent')
+// NO PLANNING AGENTS
+// House agent
+const HouseAgent = require('../agents/HouseAgent')
+var houseAgent = new HouseAgent('houseAgent', myHouse)
 
 houseAgent.intentions.push(CarChargerIntention);
 houseAgent.postSubGoal(new CarChargerGoal(myHouse.devices.garage_car_charger));
 houseAgent.intentions.push(meteoSensorIntention)
 houseAgent.postSubGoal(new meteoSensorGoal(myHouse.devices.meteo_sensor));
-houseAgent.intentions.push(meteoSensorIntention)
-houseAgent.postSubGoal(new meteoSensorGoal(myHouse.devices.meteo_sensor));
-houseAgent.intentions.push(smartTiltingIntention)
-houseAgent.postSubGoal(new smartTiltingGoal(myHouse.devices.garage_tilting, myHouse));
+houseAgent.intentions.push(OpenCloseTiltingIntention)
 houseAgent.intentions.push(windowIntention)
 houseAgent.intentions.push(humidityMeterIntention)
 houseAgent.postSubGoal(new humidityMeterGoal(myHouse.devices.bathroom_meter, myHouse))
@@ -42,127 +35,91 @@ houseAgent.intentions.push(smartDoorLockIntention_lock)
 houseAgent.postSubGoal(new smartDoorLockGoal(myHouse.devices.baby_room_door, myHouse))
 houseAgent.postSubGoal(new smartDoorLockGoal(myHouse.devices.entrance_door, myHouse))
 houseAgent.postSubGoal(new smartDoorLockGoal(myHouse.devices.garage_door_lock, myHouse))
+houseAgent.intentions.push(solarPanelIntention)
+houseAgent.postSubGoal(new solarPanelGoal(myHouse.devices.solar_panel, myHouse))
+houseAgent.intentions.push(DeicingSystemIntention)
+houseAgent.postSubGoal(new DeicingSystemGoal(myHouse.devices.garage_deice_system, myHouse))
 houseAgent.intentions.push(PostmanAcceptAllRequest)
 houseAgent.postSubGoal(new Postman())
 
+// Smart Air Purifier Agent
+var {SmartAirAgent, smartAirPurifierGoal, smartAirPurifierIntention, OpenWindowGoal, OpenWindowIntention} = require('../agents/SmartAirAgent')
+let smartAirAgent = new SmartAirAgent('smartAirAgent', myHouse.devices.kitchen_air_pur, myHouse)
+
 smartAirAgent.intentions.push(smartAirPurifierIntention)
+smartAirAgent.intentions.push(OpenWindowIntention)
 smartAirAgent.intentions.push(PostmanAcceptAllRequest)
 smartAirAgent.postSubGoal(new Postman())
-smartAirAgent.postSubGoal(new smartAirPurifierGoal(myHouse.devices.kitchen_air_pur, myHouse))
+smartAirAgent.postSubGoal(new smartAirPurifierGoal())
+smartAirAgent.postSubGoal(new OpenWindowGoal())
+
+// Infrared Camera Agent
+var {InfraCameraAgent, infraredCameraGoal, infraredCameraIntention, LockDoorGoal, LockDoorIntention} = require('../agents/InfraCameraAgent')
+var infraredCameraAgent = new InfraCameraAgent('infraredCameraAgent', myHouse.devices.infrared_camera, myHouse)
 
 infraredCameraAgent.intentions.push(infraredCameraIntention)
 infraredCameraAgent.intentions.push(PostmanAcceptAllRequest)
+infraredCameraAgent.intentions.push(LockDoorIntention)
 infraredCameraAgent.postSubGoal(new Postman())
 infraredCameraAgent.postSubGoal(new infraredCameraGoal(myHouse.devices.infrared_camera, myHouse))
+infraredCameraAgent.postSubGoal(new LockDoorGoal())
 
-//PDDL Vacuum Cleaner
-const {Move, SwitchOn, SwitchOff, Clean, CleanAll, ReturnToBase, ExitFromBase, LastTask} = require('../pddl_script/VacuumPddl')
-let {OnlinePlanning} = require('../pddl/OnlinePlanner')([Move, SwitchOn, SwitchOff, Clean, CleanAll, ReturnToBase, ExitFromBase, LastTask])
 
-myHouse.devices.vacuum_cleaner.intentions.push(OnlinePlanning)
-myHouse.devices.vacuum_cleaner.intentions.push(RetryFourTimesIntention)
+// PLANNING AGENTS
+// Vacuum Cleaner
 
-myHouse.devices.vacuum_cleaner.beliefs.declare("room hallway")
-myHouse.devices.vacuum_cleaner.beliefs.declare("room bathroom")
-myHouse.devices.vacuum_cleaner.beliefs.declare("room bedroom")
-myHouse.devices.vacuum_cleaner.beliefs.declare("room baby_room")
+var {VacuumCleanerAgent, VacuumCleanerGoal, VacuumCleanerIntention, SensorVacuumCleanerGoal, SensorVacuumCleanerIntention} = require("../agents/VacuumCleanerAgent");
+var VacuumCleaner = require("../devices/VacuumCleaner");
 
-myHouse.devices.vacuum_cleaner.beliefs.declare("room1 hallway")
-myHouse.devices.vacuum_cleaner.beliefs.declare("room2 bathroom")
-myHouse.devices.vacuum_cleaner.beliefs.declare("room3 bedroom")
-myHouse.devices.vacuum_cleaner.beliefs.declare("room4 baby_room")
+let vacuumCleanerDevice = new VacuumCleaner(myHouse, "vacuum_cleaner");
+let vacuumCleanerAgent  = new VacuumCleanerAgent("vacuumCleaner", vacuumCleanerDevice);
 
-myHouse.devices.vacuum_cleaner.beliefs.declare("vacuum vacuum_cleaner")
+const {Move, SwitchOn, SwitchOff, Clean, ReturnToBase, ExitFromBase} = require('../pddlActions/VacuumPddl')
+let {OnlinePlanning} = require('../pddl/OnlinePlanner')([Move, SwitchOn, SwitchOff, Clean, ReturnToBase, ExitFromBase])
 
-myHouse.devices.vacuum_cleaner.beliefs.declare("adj hallway bathroom")
-myHouse.devices.vacuum_cleaner.beliefs.declare("adj bathroom hallway")
-myHouse.devices.vacuum_cleaner.beliefs.declare("adj hallway bedroom")
-myHouse.devices.vacuum_cleaner.beliefs.declare("adj bedroom hallway")
-myHouse.devices.vacuum_cleaner.beliefs.declare("adj hallway baby_room")
-myHouse.devices.vacuum_cleaner.beliefs.declare("adj baby_room hallway")
-
-myHouse.devices.vacuum_cleaner.beliefs.declare("not_cleaned hallway")
-myHouse.devices.vacuum_cleaner.beliefs.declare("not_cleaned bathroom")
-myHouse.devices.vacuum_cleaner.beliefs.declare("not_cleaned bedroom")
-myHouse.devices.vacuum_cleaner.beliefs.declare("not_cleaned baby_room")
-myHouse.devices.vacuum_cleaner.beliefs.declare("in_base vacuum_cleaner")
-myHouse.devices.vacuum_cleaner.beliefs.declare("in_room vacuum_cleaner hallway")
-
-myHouse.devices.vacuum_cleaner.beliefs.declare("switch_off vacuum_cleaner")
+vacuumCleanerAgent.intentions.push(OnlinePlanning)
+vacuumCleanerAgent.intentions.push(RetryFourTimesIntention)
+vacuumCleanerAgent.intentions.push(VacuumCleanerIntention)
+vacuumCleanerAgent.intentions.push(SensorVacuumCleanerIntention)
+vacuumCleanerAgent.postSubGoal(new SensorVacuumCleanerGoal())
 
 
 //PDDL HeatPump
-const {SwitchOn_hp, SwitchOff_hp, setTempHigh, setTempLow} = require('../pddl_script/HeatPumpPddl')
+var {HeatPumpAgent, SensingHeatPumpIntention, SensingHeatPumpGoal} = require("../agents/HeatPumpAgent");
+var HeatPump = require("../devices/HeatPump");
+
+let heatPumpDevice = new HeatPump(myHouse, "heat_pump");
+let heatPumpAgent  = new HeatPumpAgent("heatPump", heatPumpDevice, myHouse.devices.garage_car_charger, myHouse.devices.solar_panel, myHouse.devices.kitchen_windows);
+
+const {SwitchOn_hp, SwitchOff_hp, setTempHigh, setTempLow} = require('../pddlActions/HeatPumpPddl')
 let {OnlinePlanning: OnlinePlanner_hp} = require('../pddl/OnlinePlanner')([SwitchOn_hp, SwitchOff_hp, setTempHigh, setTempLow])
 
-myHouse.devices.garage_pump.intentions.push(OnlinePlanner_hp)
-myHouse.devices.garage_pump.intentions.push(RetryFourTimesIntention)
+heatPumpAgent.intentions.push(OnlinePlanner_hp)
+heatPumpAgent.intentions.push(RetryFourTimesIntention)
+heatPumpAgent.intentions.push(SensingHeatPumpIntention)
+heatPumpAgent.postSubGoal(new SensingHeatPumpGoal())
 
-myHouse.devices.garage_pump.beliefs.declare("heatpump heat_pump")
-myHouse.devices.garage_pump.beliefs.declare("solarpanel solar_panel")
-myHouse.devices.garage_pump.beliefs.declare("carcharger car_charger")
-myHouse.devices.garage_pump.beliefs.declare("window window_open")
 
-myHouse.devices.garage_pump.beliefs.declare("switch_off heat_pump")
+//PDDL GardenRobot
+var {GardenRobotAgent, SensorGardenRobotGoal, SensorGardenRobotIntention, ManageTiltingGoal, ManageTiltingIntention, GardenRobotGoal, GardenRobotIntention} = require("../agents/GardenRobotAgent");
+var GardenRobot = require("../devices/GardenRobot");
 
-myHouse.devices.garage_pump.beliefs.declare("notawake solar_panel")
-myHouse.devices.garage_pump.beliefs.declare("notawake car_charger")
-myHouse.devices.garage_pump.beliefs.declare("notopen window_open")
+let gardenRobotDevice = new GardenRobot(myHouse, "robot_garden");
+let gardenRobotAgent  = new GardenRobotAgent("gardenRobot", gardenRobotDevice, myHouse.devices.meteo_sensor, myHouse.devices.garage_tilting, houseAgent);
 
-//PDDL DeicingMachine
-const {TurnOn, TurnOff} = require('../pddl_script/DeicingPddl')
-let {OnlinePlanning: OnlinePlanner_ds} = require('../pddl/OnlinePlanner')([TurnOn, TurnOff])
+const {Move_gr, SwitchOn_gr, SwitchOff_gr, CutGrass, ReturnToBase_gr, ExitFromBase_gr} = require('../pddlActions/RobotGardenPddl')
+let {OnlinePlanning: OnlinePlanner_gr} = require('../pddl/OnlinePlanner')([Move_gr, SwitchOn_gr, SwitchOff_gr, CutGrass, ReturnToBase_gr, ExitFromBase_gr])
 
-myHouse.devices.garage_deice_system.intentions.push(OnlinePlanner_ds)
-myHouse.devices.garage_deice_system.intentions.push(RetryFourTimesIntention)
+gardenRobotAgent.intentions.push(OnlinePlanner_gr)
+gardenRobotAgent.intentions.push(RetryFourTimesIntention)
+gardenRobotAgent.intentions.push(SensorGardenRobotIntention)
+gardenRobotAgent.postSubGoal(new SensorGardenRobotGoal())
+gardenRobotAgent.intentions.push(ManageTiltingIntention)
+gardenRobotAgent.postSubGoal(new ManageTiltingGoal())
+gardenRobotAgent.intentions.push(GardenRobotIntention)
+gardenRobotAgent.intentions.push(PostmanAcceptAllRequest)
+gardenRobotAgent.postSubGoal(new Postman())
 
-myHouse.devices.garage_deice_system.beliefs.declare('deicing deicing_system')
-myHouse.devices.garage_deice_system.beliefs.declare('off deicing_system')
-myHouse.devices.garage_deice_system.beliefs.declare('state under_zero')
-myHouse.devices.garage_deice_system.beliefs.declare('temperature over_zero')
-
-//PDDL GarderRobot
-const {Move_gr, SwitchOn_gr, SwitchOff_gr, CutGrass, CutAll, ReturnToBase_gr, ExitFromBase_gr, LastTask_gr} = require('../pddl_script/RobotGardenPddl')
-let {OnlinePlanning: OnlinePlanner_gr} = require('../pddl/OnlinePlanner')([Move_gr, SwitchOn_gr, SwitchOff_gr, CutGrass, CutAll, ReturnToBase_gr, ExitFromBase_gr, LastTask_gr])
-
-myHouse.devices.robot_garden.intentions.push(OnlinePlanner_gr)
-myHouse.devices.robot_garden.intentions.push(RetryFourTimesIntention)
-
-myHouse.devices.robot_garden.beliefs.declare("field garage")
-myHouse.devices.robot_garden.beliefs.declare("field entrance")
-myHouse.devices.robot_garden.beliefs.declare("field living_room")
-myHouse.devices.robot_garden.beliefs.declare("field kitchen")
-
-myHouse.devices.robot_garden.beliefs.declare("field1 garage")
-myHouse.devices.robot_garden.beliefs.declare("field2 entrance")
-myHouse.devices.robot_garden.beliefs.declare("field3 living_room")
-myHouse.devices.robot_garden.beliefs.declare("field4 kitchen")
-
-myHouse.devices.robot_garden.beliefs.declare("gardenrobot robot_garden")
-
-myHouse.devices.robot_garden.beliefs.declare("adj garage entrance")
-myHouse.devices.robot_garden.beliefs.declare("adj entrance garage")
-myHouse.devices.robot_garden.beliefs.declare("adj entrance kitchen")
-myHouse.devices.robot_garden.beliefs.declare("adj kitchen entrance")
-myHouse.devices.robot_garden.beliefs.declare("adj kitchen living_room")
-myHouse.devices.robot_garden.beliefs.declare("adj living_room kitchen")
-myHouse.devices.robot_garden.beliefs.declare("adj living_room garage")
-myHouse.devices.robot_garden.beliefs.declare("adj garage living_room")
-
-myHouse.devices.robot_garden.beliefs.declare("not_cut entrance")
-myHouse.devices.robot_garden.beliefs.declare("not_cut garage")
-myHouse.devices.robot_garden.beliefs.declare("not_cut kitchen")
-myHouse.devices.robot_garden.beliefs.declare("not_cut living_room")
-
-myHouse.devices.robot_garden.beliefs.declare("in_base robot_garden")
-myHouse.devices.robot_garden.beliefs.declare("in_field robot_garden garage")
-
-myHouse.devices.robot_garden.beliefs.declare("switch_off robot_garden")
-
-myHouse.devices.robot_garden.beliefs.declare("weather good")
-myHouse.devices.robot_garden.beliefs.declare("status_weather good")
-
-myHouse.devices.robot_garden.beliefs.declare('state over_zero')
 
 // Simulate a day
 
@@ -188,10 +145,10 @@ Clock.global.observe('mm', (key, mm) => {
             myHouse.devices.meteo_sensor.forecast_today = 'sunny'
         }
         if(time.hh==16 && time.mm==30){
-            myHouse.people.mario.resetVacuumCleaner()
+            myHouse.people.mario.resetVacuumCleaner(vacuumCleanerDevice)
         }
         if(time.hh==16 && time.mm==45){
-            myHouse.people.john.resetVacuumCleaner()
+            myHouse.people.john.resetVacuumCleaner(vacuumCleanerDevice)
         }
         if(time.hh==19 && time.mm==00){
             console.log('- Simulate the change of humidity > new humidity value = 88 % -\n')
@@ -199,10 +156,6 @@ Clock.global.observe('mm', (key, mm) => {
         }
         if(time.hh==23 && time.mm==45){
             Clock.stopTimer()
-            console.log("## REPORT OF CONSUMPTION: ##")
-            console.log("\t- Electricity > \t" + (myHouse.utilities.electricity.consumption)/1000 + " kW \t " + ((myHouse.utilities.electricity.consumption)/1000)*0.26 + " €")
-            console.log("\t- Water > \t\t" + myHouse.utilities.water.consumption + " L \t\t " + ((myHouse.utilities.water.consumption)/1000)*1.37 + " €")
-            console.log('\n\n- END OF TEST -\n')
         }
     }
 })

@@ -1,3 +1,5 @@
+const Goal = require('../bdi/Goal');
+const Intention = require('../bdi/Intention');
 const Observable = require('../utils/Observable');
 
 class Window extends Observable {
@@ -9,16 +11,54 @@ class Window extends Observable {
     }
     openWindow () {
         this.status = 'open'
-        this.house.devices.garage_pump.beliefs.declare("open window_open")
-        this.house.devices.garage_pump.beliefs.declare("notopen window_open")
         console.log(this.name + ' is open')
     }
     closeWindow () {
         this.status = 'close'
-        this.house.devices.garage_pump.beliefs.declare("notopen window_open")
-        this.house.devices.garage_pump.beliefs.declare("open window_open")
         console.log(this.name + ' is close')
     }
 }
 
-module.exports = Window;
+class windowGoal extends Goal {
+    constructor(window, house, state) {
+      super(window, house, state);
+  
+      /** @type {window} window */
+      this.window = window;
+      /** @type {myHouse} house */
+      this.house = house;
+      /** @type {string} state */
+      this.state = state;
+    }
+  }
+  
+class windowIntention extends Intention {
+    constructor(agent, goal) {
+      super(agent, goal);
+  
+      /** @type {window} window */
+      this.window = this.goal.window;
+      /** @type {myHouse} house */
+      this.house = this.goal.house;
+      /** @type {string} state */
+      this.state = this.goal.state;
+    }
+  
+    static applicable(goal) {
+      return goal instanceof windowGoal;
+    }
+  
+    *exec() {
+      while(true){
+        if ((this.window.status == 'close') && (this.state == 'open')){
+          this.window.openWindow();
+        }
+        yield
+        if((this.window.status == 'open') && (this.state == 'close')){
+          this.window.closeWindow();
+        }
+        }
+      }
+  }
+
+module.exports = {Window, windowGoal, windowIntention};

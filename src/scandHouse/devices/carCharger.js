@@ -1,4 +1,6 @@
 const Observable = require('../utils/Observable');
+const Goal = require('../bdi/Goal');
+const Intention = require('../bdi/Intention');
 
 class CarCharger extends Observable {
     constructor (house, name) {
@@ -12,8 +14,6 @@ class CarCharger extends Observable {
         if (this.status != 'plugged_max'){
             this.house.utilities.electricity.consumption += 21000;
             this.status = 'plugged_max'
-            this.house.devices.garage_pump.beliefs.declare("awake car_charger")
-            this.house.devices.garage_pump.beliefs.undeclare("notawake car_charger")
             console.log('Start charging car at MAX power')
         }
         else
@@ -23,8 +23,6 @@ class CarCharger extends Observable {
         if (this.status != 'plugged_min'){
             this.house.utilities.electricity.consumption += 14000;
             this.status = 'plugged_min'
-            this.house.devices.garage_pump.beliefs.declare("awake car_charger")
-            this.house.devices.garage_pump.beliefs.undeclare("notawake car_charger")
             console.log('Start charging car at MIN power')
         }
         else
@@ -32,10 +30,53 @@ class CarCharger extends Observable {
     }
     stopRecharge () {
         this.status = 'unplugged'
-        this.house.devices.garage_pump.beliefs.declare("notawake car_charger")
-        this.house.devices.garage_pump.beliefs.undeclare("awake car_charger")
         console.log('Recharge car has been stopped')
     }
 }
 
-module.exports = CarCharger;
+class CarChargerGoal extends Goal {
+    constructor(carCharger) {
+      super(carCharger);
+  
+      /** @type {CarCharger} carCharger */
+      this.carCharger = carCharger;
+    }
+  }
+  
+class CarChargerIntention extends Intention {
+    constructor(agent, goal) {
+      super(agent, goal);
+  
+      /** @type {CarCharger} carCharger */
+      this.carCharger = this.goal.carCharger;
+    }
+  
+    static applicable(goal) {
+      return goal instanceof CarChargerGoal;
+    }
+  
+    *exec() {
+      var carChargerGoals = [];
+      let carChargerPromise = new Promise(( async res => {
+          while(true){
+              let status = await this.carCharger.notifyChange('status')
+              switch(status){
+                    case 'plugged_max':
+                        this.carCharger.rechargeMaxPower()
+                        break;
+                    case 'plugged_min':
+                        this.carCharger.rechargeMinPower()
+                        break;
+                    case 'unplugged':
+                        this.carCharger.stopRecharge()
+                        break;
+              }
+          }
+      }));
+  
+      carChargerGoals.push(carChargerPromise);
+      yield Promise.all(carChargerGoals)
+      }
+  }
+
+module.exports = {CarCharger, CarChargerGoal, CarChargerIntention};

@@ -2,115 +2,69 @@ houseAgent                     Trying to use intention CarChargerIntention to ac
 houseAgent>CarChargerIntention#0 Intention started
 houseAgent                     Trying to use intention meteoSensorIntention to achieve goal meteoSensorGoal#1[object Object]
 houseAgent>meteoSensorIntention#1 Intention started
-houseAgent                     Trying to use intention meteoSensorIntention to achieve goal meteoSensorGoal#2[object Object]
-houseAgent>meteoSensorIntention#2 Intention started
-houseAgent                     Trying to use intention smartTiltingIntention to achieve goal smartTiltingGoal#3[object Object]
-houseAgent>smartTiltingIntention#3 Intention started
-houseAgent                     Trying to use intention humidityMeterIntention to achieve goal humidityMeterGoal#4[object Object]
-houseAgent>humidityMeterIntention#4 Intention started
+houseAgent                     Trying to use intention humidityMeterIntention to achieve goal humidityMeterGoal#2[object Object]
+houseAgent>humidityMeterIntention#2 Intention started
+houseAgent                     Trying to use intention smartDoorLockIntention to achieve goal smartDoorLockGoal#3[object Object]
+houseAgent>smartDoorLockIntention#3 Intention started
+houseAgent                     Trying to use intention smartDoorLockIntention to achieve goal smartDoorLockGoal#4[object Object]
+houseAgent>smartDoorLockIntention#4 Intention started
 houseAgent                     Trying to use intention smartDoorLockIntention to achieve goal smartDoorLockGoal#5[object Object]
 houseAgent>smartDoorLockIntention#5 Intention started
-houseAgent                     Trying to use intention smartDoorLockIntention to achieve goal smartDoorLockGoal#6[object Object]
-houseAgent>smartDoorLockIntention#6 Intention started
-houseAgent                     Trying to use intention smartDoorLockIntention to achieve goal smartDoorLockGoal#7[object Object]
-houseAgent>smartDoorLockIntention#7 Intention started
+houseAgent                     Trying to use intention solarPanelIntention to achieve goal solarPanelGoal#6[object Object]
+houseAgent>solarPanelIntention#6 Intention started
+houseAgent                     Trying to use intention DeicingSystemIntention to achieve goal DeicingSystemGoal#7[object Object]
+houseAgent>DeicingSystemIntention#7 Intention started
 houseAgent                     Trying to use intention PostmanAcceptAllRequest to achieve goal Postman#8[object Object]
 houseAgent>PostmanAcceptAllRequest#8 Intention started
 smartAirAgent                  Trying to use intention PostmanAcceptAllRequest to achieve goal Postman#9[object Object]
 smartAirAgent>PostmanAcceptAllRequest#9 Intention started
 smartAirAgent                  Trying to use intention smartAirPurifierIntention to achieve goal smartAirPurifierGoal#10[object Object]
 smartAirAgent>smartAirPurifierIntention#10 Intention started
-infraredCameraAgent            Trying to use intention PostmanAcceptAllRequest to achieve goal Postman#11[object Object]
-infraredCameraAgent>PostmanAcceptAllRequest#11 Intention started
-infraredCameraAgent            Trying to use intention infraredCameraIntention to achieve goal infraredCameraGoal#12[object Object]
-infraredCameraAgent>infraredCameraIntention#12 Intention started
+smartAirAgent                  Trying to use intention OpenWindowIntention to achieve goal OpenWindowGoal#11[object Object]
+smartAirAgent>OpenWindowIntention#11 Intention started
+infraredCameraAgent            Trying to use intention PostmanAcceptAllRequest to achieve goal Postman#12[object Object]
+infraredCameraAgent>PostmanAcceptAllRequest#12 Intention started
+infraredCameraAgent            Trying to use intention infraredCameraIntention to achieve goal infraredCameraGoal#13[object Object]
+infraredCameraAgent>infraredCameraIntention#13 Intention started
+infraredCameraAgent            Trying to use intention LockDoorIntention to achieve goal LockDoorGoal#14[object Object]
+infraredCameraAgent>LockDoorIntention#14 Intention started
+vacuumCleaner                  Trying to use intention SensorVacuumCleanerIntention to achieve goal SensorVacuumCleanerGoal#15[object Object]
+vacuumCleaner>SensorVacuumCleanerIntention#15 Intention started
+heatPump                       Trying to use intention SensingHeatPumpIntention to achieve goal SensingHeatPumpGoal#16[object Object]
+heatPump>SensingHeatPumpIntention#16 Intention started
+gardenRobot                    Trying to use intention SensorGardenRobotIntention to achieve goal SensorGardenRobotGoal#17[object Object]
+gardenRobot>SensorGardenRobotIntention#17 Intention started
+gardenRobot                    Trying to use intention ManageTiltingIntention to achieve goal ManageTiltingGoal#18[object Object]
+gardenRobot>ManageTiltingIntention#18 Intention started
+gardenRobot                    Trying to use intention PostmanAcceptAllRequest to achieve goal Postman#19[object Object]
+gardenRobot>PostmanAcceptAllRequest#19 Intention started
 - START OF TEST -
 
 Mario  moved from bedroom to baby_room
-vacuum_cleaner                 Belief changed: room hallway
-vacuum_cleaner                 Belief changed: room bathroom
-vacuum_cleaner                 Belief changed: room bedroom
-vacuum_cleaner                 Belief changed: room baby_room
-vacuum_cleaner                 Belief changed: room1 hallway
-vacuum_cleaner                 Belief changed: room2 bathroom
-vacuum_cleaner                 Belief changed: room3 bedroom
-vacuum_cleaner                 Belief changed: room4 baby_room
-vacuum_cleaner                 Belief changed: vacuum vacuum_cleaner
-vacuum_cleaner                 Belief changed: adj hallway bathroom
-vacuum_cleaner                 Belief changed: adj bathroom hallway
-vacuum_cleaner                 Belief changed: adj hallway bedroom
-vacuum_cleaner                 Belief changed: adj bedroom hallway
-vacuum_cleaner                 Belief changed: adj hallway baby_room
-vacuum_cleaner                 Belief changed: adj baby_room hallway
-vacuum_cleaner                 Belief changed: not_cleaned hallway
-vacuum_cleaner                 Belief changed: not_cleaned bathroom
-vacuum_cleaner                 Belief changed: not_cleaned bedroom
-vacuum_cleaner                 Belief changed: not_cleaned baby_room
-vacuum_cleaner                 Belief changed: in_base vacuum_cleaner
-vacuum_cleaner                 Belief changed: in_room vacuum_cleaner hallway
-vacuum_cleaner                 Belief changed: switch_off vacuum_cleaner
-garage_pump                    Belief changed: heatpump heat_pump
-garage_pump                    Belief changed: solarpanel solar_panel
-garage_pump                    Belief changed: carcharger car_charger
-garage_pump                    Belief changed: window window_open
-garage_pump                    Belief changed: switch_off heat_pump
-garage_pump                    Belief changed: notawake solar_panel
-garage_pump                    Belief changed: notawake car_charger
-garage_pump                    Belief changed: notopen window_open
-garage_deice_system            Belief changed: deicing deicing_system
-garage_deice_system            Belief changed: off deicing_system
-garage_deice_system            Belief changed: state under_zero
-garage_deice_system            Belief changed: temperature over_zero
-robot_garden                   Belief changed: field garage
-robot_garden                   Belief changed: field entrance
-robot_garden                   Belief changed: field living_room
-robot_garden                   Belief changed: field kitchen
-robot_garden                   Belief changed: field1 garage
-robot_garden                   Belief changed: field2 entrance
-robot_garden                   Belief changed: field3 living_room
-robot_garden                   Belief changed: field4 kitchen
-robot_garden                   Belief changed: gardenrobot robot_garden
-robot_garden                   Belief changed: adj garage entrance
-robot_garden                   Belief changed: adj entrance garage
-robot_garden                   Belief changed: adj entrance kitchen
-robot_garden                   Belief changed: adj kitchen entrance
-robot_garden                   Belief changed: adj kitchen living_room
-robot_garden                   Belief changed: adj living_room kitchen
-robot_garden                   Belief changed: adj living_room garage
-robot_garden                   Belief changed: adj garage living_room
-robot_garden                   Belief changed: not_cut entrance
-robot_garden                   Belief changed: not_cut garage
-robot_garden                   Belief changed: not_cut kitchen
-robot_garden                   Belief changed: not_cut living_room
-robot_garden                   Belief changed: in_base robot_garden
-robot_garden                   Belief changed: in_field robot_garden garage
-robot_garden                   Belief changed: switch_off robot_garden
-robot_garden                   Belief changed: weather good
-robot_garden                   Belief changed: status_weather good
-robot_garden                   Belief changed: state over_zero
-houseAgent>CarChargerIntention#0 status garage_car_charger: unplugged
-
-infraredCameraAgent>infraredCameraIntention#12 status garage_camera: no_move_detect
-
 Energy is NOT available from the solar panels
+infraredCameraAgent>infraredCameraIntention#13 status garage_camera: no_move_detect
+
+houseAgent                     Trying to use intention PostmanAcceptAllRequest to achieve goal Postman#21[object Object]
+houseAgent>PostmanAcceptAllRequest#20 Intention started
+vacuumCleaner                  Belief changed: garbage empty
+vacuumCleaner                  Belief changed: water full
+heatPump                       Belief changed: notawake car_charger
+heatPump                       Belief changed: not awake solar_panel
+heatPump                       Belief changed: notopen window_open
+gardenRobot                    Belief changed: temperature over_zero
+gardenRobot                    Belief changed: not weather good
+gardenRobot                    Belief changed: not tilting open
 The weather is NIGHT
 The temperature outside is 18°C
-garage_deice_system            Belief changed: not temperature under_zero
-robot_garden                   Belief changed: temperature over_zero
-robot_garden                   Belief changed: not weather good
-garage_pump                    Belief changed: not awake solar_panel
-Energy is NOT available from the solar panels
-The weather is NIGHT
-The temperature outside is 18°C
+houseAgent>PostmanAcceptAllRequest#8 Reading received message OpenCloseTiltingGoal#20[object Object]
+houseAgent                     Trying to use intention OpenCloseTiltingIntention to achieve goal OpenCloseTiltingGoal#20[object Object]
+houseAgent>OpenCloseTiltingIntention#21 Intention started
+houseAgent>OpenCloseTiltingIntention#21 Intention success
+houseAgent                     Succesfully used intention OpenCloseTiltingIntention to achieve goal OpenCloseTiltingGoal#20[object Object]
 0:00:30 - Simulate the change of temperature > new temperature = -2° -
 
-Energy is NOT available from the solar panels
-The weather is NIGHT
-The temperature outside is -2°C
-garage_deice_system            Belief changed: temperature under_zero
-garage_deice_system            Belief changed: not temperature over_zero
-robot_garden                   Belief changed: not temperature over_zero
-Energy is NOT available from the solar panels
+Deicing system ON
+gardenRobot                    Belief changed: not temperature over_zero
 The weather is NIGHT
 The temperature outside is -2°C
 0:04:30 - Simulate the change of weather > new weather condition = rainy -
@@ -118,45 +72,25 @@ The temperature outside is -2°C
 Energy is NOT available from the solar panels
 The weather is RAINY
 The temperature outside is -2°C
-Energy is NOT available from the solar panels
-The weather is RAINY
-The temperature outside is -2°C
-0:07:00 garage_light turned on
-The tilting is open
 0:08:30 - Simulate the change of weather > new weather condition = sunny -
 
 Energy is available from the solar panels
+gardenRobot                    Belief changed: weather good
+heatPump                       Belief changed: awake solar_panel
 The weather is SUNNY
 The temperature outside is -2°C
-robot_garden                   Belief changed: weather good
-garage_pump                    Belief changed: awake solar_panel
-Energy is available from the solar panels
-The weather is SUNNY
-The temperature outside is -2°C
-0:09:00 garage_light turned off
-The tilting is close
 0:16:30 Mario is too young, cannot perform the action
 0:16:45 vacuum_cleaner has been reset. Garbage is empty and water is full
 0:19:00 - Simulate the change of humidity > new humidity value = 88 % -
 
 Humidity: 88%
-houseAgent>PostmanAcceptAllRequest#8 Reading received message windowGoal#13[object Object]
-houseAgent                     Trying to use intention windowIntention to achieve goal windowGoal#13[object Object]
-houseAgent>windowIntention#13  Intention started
 bathroom_window is open
-garage_pump                    Belief changed: open window_open
-0:22:30 babyroom_door is locked
+0:22:30 garage_door_lock is locked
+babyroom_door is locked
 entrance_door is locked
-garage_door_lock is locked
 houseAgent>smartDoorLockIntention#5 Intention success
 houseAgent                     Succesfully used intention smartDoorLockIntention to achieve goal smartDoorLockGoal#5[object Object]
-houseAgent>smartDoorLockIntention#6 Intention success
-houseAgent                     Succesfully used intention smartDoorLockIntention to achieve goal smartDoorLockGoal#6[object Object]
-houseAgent>smartDoorLockIntention#7 Intention success
-houseAgent                     Succesfully used intention smartDoorLockIntention to achieve goal smartDoorLockGoal#7[object Object]
-0:23:45 ## REPORT OF CONSUMPTION: ##
-        - Electricity >         0.01 kW          0.0026000000000000003 €
-        - Water >               2 L              0.0027400000000000002 €
-
-
-- END OF TEST -
+houseAgent>smartDoorLockIntention#3 Intention success
+houseAgent                     Succesfully used intention smartDoorLockIntention to achieve goal smartDoorLockGoal#3[object Object]
+houseAgent>smartDoorLockIntention#4 Intention success
+houseAgent                     Succesfully used intention smartDoorLockIntention to achieve goal smartDoorLockGoal#4[object Object]

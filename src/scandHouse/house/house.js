@@ -1,18 +1,16 @@
 //call devices
-const CarCharger = require('../devices/CarCharger');
-const DeicingSystem = require('../devices/DeicingSystem')
+const {CarCharger} = require('../devices/CarCharger');
+const {DeicingSystem} = require('../devices/DeicingSystem')
 const HeatPump = require('../devices/HeatPump')
-const HumidityMeter = require('../devices/HumidityMeter')
+const {HumidityMeter} = require('../devices/HumidityMeter')
 const InfraredCamera = require('../devices/InfraredCamera')
 const Light = require('../devices/Light')
 const SmartAirPurifier = require('../devices/SmartAirPurifier')
-const SmartLockDoor = require('../devices/SmartDoorLock')
-const SmartTilting = require('../devices/SmartTilting')
-const SolarPanel = require('../devices/SolarPanel');
-const VacuumCleaner = require('../devices/VacuumCleaner');
-const Window = require('../devices/Window')
-const MeteoSensor = require('../devices/MeteoSensor')
-const GardenRobot = require('../devices/GardenRobot');
+const {SmartLockDoor} = require('../devices/SmartDoorLock')
+const {SmartTilting} = require('../devices/SmartTilting')
+const {SolarPanel} = require('../devices/SolarPanel');
+const {Window} = require('../devices/Window')
+const {MeteoSensor} = require('../devices/MeteoSensor')
 
 //call people
 const Person = require('../people/Person')
@@ -70,8 +68,6 @@ class House {
             garage_door_lock:   new SmartLockDoor(this, 'garage_door_lock'),
             //meteo sensor
             meteo_sensor:       new MeteoSensor(this, 'meteo_sensor'),
-            //robot garden
-            robot_garden:       new GardenRobot(this, 'robot_garden'),
 
         //first floor
             //hallway
@@ -98,9 +94,6 @@ class House {
 
             //solar_panel
             solar_panel:        new SolarPanel(this, 'solar_panel'),
-
-            //vacuum_cleaner
-            vacuum_cleaner:     new VacuumCleaner(this, 'vacuum_cleaner')
         }
 
         this.utilities = {

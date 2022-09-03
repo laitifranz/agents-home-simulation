@@ -1,3 +1,5 @@
+const Goal = require('../bdi/Goal');
+const Intention = require('../bdi/Intention');
 const Observable = require('../utils/Observable');
 
 class MeteoSensor extends Observable {
@@ -9,51 +11,45 @@ class MeteoSensor extends Observable {
         this.set('forecast_today', 'night')
     }
     
-    applyChange() {
-        this.changeTemp()
-        this.changeForecast()
+    showData() {
+        console.log('The weather is ' + (this.forecast_today).toUpperCase())
         console.log('The temperature outside is ' + this.temperature + '°C')
+        
     }
-    changeTemp() {
-        if(this.temperature > 0) {
-            this.house.devices.garage_deice_system.beliefs.declare('temperature over_zero')
-            this.house.devices.garage_deice_system.beliefs.undeclare('temperature under_zero')
-            this.house.devices.robot_garden.beliefs.declare('temperature over_zero')
-        }
-        else{
-            this.house.devices.garage_deice_system.beliefs.declare('temperature under_zero')
-            this.house.devices.garage_deice_system.beliefs.undeclare('temperature over_zero')
-            this.house.devices.robot_garden.beliefs.undeclare('temperature over_zero')
-        }    
+}
+
+class meteoSensorGoal extends Goal {
+    constructor(meteoSensor, house) {
+        super(meteoSensor);
+    
+        /** @type {meteoSensor} meteoSensor */
+        this.meteoSensor = meteoSensor;
+        /** @type {myHouse} house */
+        this.house = house;
+      }
+}
+  
+class meteoSensorIntention extends Intention {
+    constructor(agent, goal) {
+        super(agent, goal);
+    
+        /** @type {meteoSensor} meteoSensor */
+        this.meteoSensor = this.goal.meteoSensor;
+        /** @type {myHouse} house */
+        this.house = this.goal.house;
+    
+      }
+
+    static applicable(goal) {
+        return goal instanceof meteoSensorGoal;
     }
-    changeForecast() {
-        if(this.forecast_today == 'sunny') {
-            this.house.devices.robot_garden.beliefs.declare('weather good')
-            this.house.devices.solar_panel.energyAvailable()
-            console.log('The weather is SUNNY')
-        }
-        else if (this.forecast_today == 'cloudy'){
-            this.house.devices.robot_garden.beliefs.declare('weather good')
-            this.house.devices.solar_panel.noEnergyAvailable()
-            console.log('The weather is CLOUDY')
-        }
-        else if (this.forecast_today == 'rainy'){
-            this.house.devices.robot_garden.beliefs.undeclare('weather good')
-            this.house.devices.solar_panel.noEnergyAvailable()
-            console.log('The weather is RAINY')
-        }
-        else if (this.forecast_today == 'night'){
-            this.house.devices.robot_garden.beliefs.undeclare('weather good')
-            this.house.devices.solar_panel.noEnergyAvailable()
-            console.log('The weather is NIGHT')
-        }
-        else{
-            console.log('The weather is UNKNOWN')
-            //default
-            this.house.devices.robot_garden.beliefs.undeclare('weather good')
-            this.house.devices.solar_panel.noEnergyAvailable()
+
+    *exec() {
+        while(true){
+        yield this.meteoSensor.notifyAnyChange()
+        this.meteoSensor.showData()
         }
     }
 }
 
-module.exports = MeteoSensor;
+module.exports = {MeteoSensor, meteoSensorGoal, meteoSensorIntention};

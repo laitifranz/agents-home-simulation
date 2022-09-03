@@ -2,103 +2,116 @@ houseAgent                     Trying to use intention CarChargerIntention to ac
 houseAgent>CarChargerIntention#0 Intention started
 houseAgent                     Trying to use intention meteoSensorIntention to achieve goal meteoSensorGoal#1[object Object]
 houseAgent>meteoSensorIntention#1 Intention started
-houseAgent                     Trying to use intention meteoSensorIntention to achieve goal meteoSensorGoal#2[object Object]
-houseAgent>meteoSensorIntention#2 Intention started
-houseAgent                     Trying to use intention smartTiltingIntention to achieve goal smartTiltingGoal#3[object Object]
-houseAgent>smartTiltingIntention#3 Intention started
-houseAgent                     Trying to use intention humidityMeterIntention to achieve goal humidityMeterGoal#4[object Object]
-houseAgent>humidityMeterIntention#4 Intention started
+houseAgent                     Trying to use intention humidityMeterIntention to achieve goal humidityMeterGoal#2[object Object]
+houseAgent>humidityMeterIntention#2 Intention started
+houseAgent                     Trying to use intention smartDoorLockIntention to achieve goal smartDoorLockGoal#3[object Object]
+houseAgent>smartDoorLockIntention#3 Intention started
+houseAgent                     Trying to use intention smartDoorLockIntention to achieve goal smartDoorLockGoal#4[object Object]
+houseAgent>smartDoorLockIntention#4 Intention started
 houseAgent                     Trying to use intention smartDoorLockIntention to achieve goal smartDoorLockGoal#5[object Object]
 houseAgent>smartDoorLockIntention#5 Intention started
-houseAgent                     Trying to use intention smartDoorLockIntention to achieve goal smartDoorLockGoal#6[object Object]
-houseAgent>smartDoorLockIntention#6 Intention started
-houseAgent                     Trying to use intention smartDoorLockIntention to achieve goal smartDoorLockGoal#7[object Object]
-houseAgent>smartDoorLockIntention#7 Intention started
+houseAgent                     Trying to use intention solarPanelIntention to achieve goal solarPanelGoal#6[object Object]
+houseAgent>solarPanelIntention#6 Intention started
+houseAgent                     Trying to use intention DeicingSystemIntention to achieve goal DeicingSystemGoal#7[object Object]
+houseAgent>DeicingSystemIntention#7 Intention started
 houseAgent                     Trying to use intention PostmanAcceptAllRequest to achieve goal Postman#8[object Object]
 houseAgent>PostmanAcceptAllRequest#8 Intention started
 smartAirAgent                  Trying to use intention PostmanAcceptAllRequest to achieve goal Postman#9[object Object]
 smartAirAgent>PostmanAcceptAllRequest#9 Intention started
 smartAirAgent                  Trying to use intention smartAirPurifierIntention to achieve goal smartAirPurifierGoal#10[object Object]
 smartAirAgent>smartAirPurifierIntention#10 Intention started
-infraredCameraAgent            Trying to use intention PostmanAcceptAllRequest to achieve goal Postman#11[object Object]
-infraredCameraAgent>PostmanAcceptAllRequest#11 Intention started
-infraredCameraAgent            Trying to use intention infraredCameraIntention to achieve goal infraredCameraGoal#12[object Object]
-infraredCameraAgent>infraredCameraIntention#12 Intention started
+smartAirAgent                  Trying to use intention OpenWindowIntention to achieve goal OpenWindowGoal#11[object Object]
+smartAirAgent>OpenWindowIntention#11 Intention started
+infraredCameraAgent            Trying to use intention PostmanAcceptAllRequest to achieve goal Postman#12[object Object]
+infraredCameraAgent>PostmanAcceptAllRequest#12 Intention started
+infraredCameraAgent            Trying to use intention infraredCameraIntention to achieve goal infraredCameraGoal#13[object Object]
+infraredCameraAgent>infraredCameraIntention#13 Intention started
+infraredCameraAgent            Trying to use intention LockDoorIntention to achieve goal LockDoorGoal#14[object Object]
+infraredCameraAgent>LockDoorIntention#14 Intention started
+vacuumCleaner                  Trying to use intention SensorVacuumCleanerIntention to achieve goal SensorVacuumCleanerGoal#15[object Object]
+vacuumCleaner>SensorVacuumCleanerIntention#15 Intention started
+heatPump                       Trying to use intention SensingHeatPumpIntention to achieve goal SensingHeatPumpGoal#16[object Object]
+heatPump>SensingHeatPumpIntention#16 Intention started
+gardenRobot                    Trying to use intention SensorGardenRobotIntention to achieve goal SensorGardenRobotGoal#17[object Object]
+gardenRobot>SensorGardenRobotIntention#17 Intention started
+gardenRobot                    Trying to use intention ManageTiltingIntention to achieve goal ManageTiltingGoal#18[object Object]
+gardenRobot>ManageTiltingIntention#18 Intention started
+gardenRobot                    Trying to use intention PostmanAcceptAllRequest to achieve goal Postman#19[object Object]
+gardenRobot>PostmanAcceptAllRequest#19 Intention started
 - START OF TEST -
 
 Mario  moved from bedroom to baby_room
-vacuum_cleaner                 Belief changed: room hallway
-vacuum_cleaner                 Belief changed: room bathroom
-vacuum_cleaner                 Belief changed: room bedroom
-vacuum_cleaner                 Belief changed: room baby_room
-vacuum_cleaner                 Belief changed: room1 hallway
-vacuum_cleaner                 Belief changed: room2 bathroom
-vacuum_cleaner                 Belief changed: room3 bedroom
-vacuum_cleaner                 Belief changed: room4 baby_room
-vacuum_cleaner                 Belief changed: vacuum vacuum_cleaner
-vacuum_cleaner                 Belief changed: adj hallway bathroom
-vacuum_cleaner                 Belief changed: adj bathroom hallway
-vacuum_cleaner                 Belief changed: adj hallway bedroom
-vacuum_cleaner                 Belief changed: adj bedroom hallway
-vacuum_cleaner                 Belief changed: adj hallway baby_room
-vacuum_cleaner                 Belief changed: adj baby_room hallway
-vacuum_cleaner                 Belief changed: not_cleaned hallway
-vacuum_cleaner                 Belief changed: not_cleaned bathroom
-vacuum_cleaner                 Belief changed: not_cleaned bedroom
-vacuum_cleaner                 Belief changed: not_cleaned baby_room
-vacuum_cleaner                 Belief changed: in_base vacuum_cleaner
-vacuum_cleaner                 Belief changed: in_room vacuum_cleaner hallway
-vacuum_cleaner                 Belief changed: switch_off vacuum_cleaner
-garage_pump                    Belief changed: heatpump heat_pump
-garage_pump                    Belief changed: solarpanel solar_panel
-garage_pump                    Belief changed: carcharger car_charger
-garage_pump                    Belief changed: window window_open
-garage_pump                    Belief changed: switch_off heat_pump
-garage_pump                    Belief changed: notawake solar_panel
-garage_pump                    Belief changed: notawake car_charger
-garage_pump                    Belief changed: notopen window_open
-garage_deice_system            Belief changed: deicing deicing_system
-garage_deice_system            Belief changed: off deicing_system
-garage_deice_system            Belief changed: state under_zero
-garage_deice_system            Belief changed: temperature over_zero
-robot_garden                   Belief changed: field garage
-robot_garden                   Belief changed: field entrance
-robot_garden                   Belief changed: field living_room
-robot_garden                   Belief changed: field kitchen
-robot_garden                   Belief changed: field1 garage
-robot_garden                   Belief changed: field2 entrance
-robot_garden                   Belief changed: field3 living_room
-robot_garden                   Belief changed: field4 kitchen
-robot_garden                   Belief changed: gardenrobot robot_garden
-robot_garden                   Belief changed: adj garage entrance
-robot_garden                   Belief changed: adj entrance garage
-robot_garden                   Belief changed: adj entrance kitchen
-robot_garden                   Belief changed: adj kitchen entrance
-robot_garden                   Belief changed: adj kitchen living_room
-robot_garden                   Belief changed: adj living_room kitchen
-robot_garden                   Belief changed: adj living_room garage
-robot_garden                   Belief changed: adj garage living_room
-robot_garden                   Belief changed: not_cut entrance
-robot_garden                   Belief changed: not_cut garage
-robot_garden                   Belief changed: not_cut kitchen
-robot_garden                   Belief changed: not_cut living_room
-robot_garden                   Belief changed: in_base robot_garden
-robot_garden                   Belief changed: in_field robot_garden garage
-robot_garden                   Belief changed: switch_off robot_garden
-robot_garden                   Belief changed: weather good
-robot_garden                   Belief changed: status_weather good
-robot_garden                   Belief changed: state over_zero
-houseAgent>CarChargerIntention#0 status garage_car_charger: unplugged
+vacuumCleaner                  Belief changed: room hallway
+vacuumCleaner                  Belief changed: room bathroom
+vacuumCleaner                  Belief changed: room bedroom
+vacuumCleaner                  Belief changed: room baby_room
+vacuumCleaner                  Belief changed: base hallway
+vacuumCleaner                  Belief changed: vacuum vacuum_cleaner
+vacuumCleaner                  Belief changed: adj hallway bathroom
+vacuumCleaner                  Belief changed: adj bathroom hallway
+vacuumCleaner                  Belief changed: adj hallway bedroom
+vacuumCleaner                  Belief changed: adj bedroom hallway
+vacuumCleaner                  Belief changed: adj hallway baby_room
+vacuumCleaner                  Belief changed: adj baby_room hallway
+vacuumCleaner                  Belief changed: not_cleaned hallway
+vacuumCleaner                  Belief changed: not_cleaned bathroom
+vacuumCleaner                  Belief changed: not_cleaned bedroom
+vacuumCleaner                  Belief changed: not_cleaned baby_room
+vacuumCleaner                  Belief changed: in_base vacuum_cleaner
+vacuumCleaner                  Belief changed: in_room vacuum_cleaner hallway
+vacuumCleaner                  Belief changed: switch_off vacuum_cleaner
+vacuumCleaner                  Belief changed: state_water full
+vacuumCleaner                  Belief changed: state_garbage empty
+heatPump                       Belief changed: heatpump heat_pump
+heatPump                       Belief changed: solarpanel solar_panel
+heatPump                       Belief changed: carcharger car_charger
+heatPump                       Belief changed: window window_open
+heatPump                       Belief changed: switch_off heat_pump
+gardenRobot                    Belief changed: field garage
+gardenRobot                    Belief changed: field entrance
+gardenRobot                    Belief changed: field living_room
+gardenRobot                    Belief changed: field kitchen
+gardenRobot                    Belief changed: base garage
+gardenRobot                    Belief changed: gardenrobot robot_garden
+gardenRobot                    Belief changed: adj garage entrance
+gardenRobot                    Belief changed: adj entrance garage
+gardenRobot                    Belief changed: adj entrance kitchen
+gardenRobot                    Belief changed: adj kitchen entrance
+gardenRobot                    Belief changed: adj kitchen living_room
+gardenRobot                    Belief changed: adj living_room kitchen
+gardenRobot                    Belief changed: adj living_room garage
+gardenRobot                    Belief changed: adj garage living_room
+gardenRobot                    Belief changed: not_cut entrance
+gardenRobot                    Belief changed: not_cut garage
+gardenRobot                    Belief changed: not_cut kitchen
+gardenRobot                    Belief changed: not_cut living_room
+gardenRobot                    Belief changed: in_base robot_garden
+gardenRobot                    Belief changed: in_field robot_garden garage
+gardenRobot                    Belief changed: switch_off robot_garden
+gardenRobot                    Belief changed: state_tilting open
+Energy is NOT available from the solar panels
+infraredCameraAgent>infraredCameraIntention#13 status garage_camera: no_move_detect
 
-infraredCameraAgent>infraredCameraIntention#12 status garage_camera: no_move_detect
-
-Energy is available from the solar panels
-The weather is SUNNY
+houseAgent                     Trying to use intention PostmanAcceptAllRequest to achieve goal Postman#21[object Object]
+houseAgent>PostmanAcceptAllRequest#20 Intention started
+vacuumCleaner                  Belief changed: garbage empty
+vacuumCleaner                  Belief changed: water full
+heatPump                       Belief changed: notawake car_charger
+heatPump                       Belief changed: not awake solar_panel
+heatPump                       Belief changed: notopen window_open
+gardenRobot                    Belief changed: temperature over_zero
+gardenRobot                    Belief changed: not weather good
+gardenRobot                    Belief changed: not tilting open
+The weather is NIGHT
 The temperature outside is 18°C
-garage_deice_system            Belief changed: not temperature under_zero
-robot_garden                   Belief changed: temperature over_zero
-garage_pump                    Belief changed: awake solar_panel
-Energy is available from the solar panels
+houseAgent>PostmanAcceptAllRequest#8 Reading received message OpenCloseTiltingGoal#20[object Object]
+houseAgent                     Trying to use intention OpenCloseTiltingIntention to achieve goal OpenCloseTiltingGoal#20[object Object]
+houseAgent>OpenCloseTiltingIntention#21 Intention started
+houseAgent>OpenCloseTiltingIntention#21 Intention success
+houseAgent                     Succesfully used intention OpenCloseTiltingIntention to achieve goal OpenCloseTiltingGoal#20[object Object]
+0:00:15 Energy is available from the solar panels
+gardenRobot                    Belief changed: weather good
+heatPump                       Belief changed: awake solar_panel
 The weather is SUNNY
 The temperature outside is 18°C
 0:00:30 - PLANNING TEST -
@@ -107,356 +120,357 @@ The temperature outside is 18°C
 
 GOAL: clean all rooms and return to the base
 
-vacuum_cleaner                 Trying to use intention RetryFourTimesIntention to achieve goal RetryGoal#14[object Object]
-vacuum_cleaner>RetryFourTimesIntention#13 Intention started
-vacuum_cleaner                 Trying to use intention OnlinePlanning to achieve goal PddlGoal#13[object Object]
-vacuum_cleaner>OnlinePlanning#14 Intention started
-0:01:15 vacuum_cleaner>OnlinePlanning#14 Plan found:
-vacuum_cleaner>OnlinePlanning#14 - (switchon vacuum_cleaner)
-vacuum_cleaner>OnlinePlanning#14 - (exitfrombase vacuum_cleaner)
-vacuum_cleaner>OnlinePlanning#14 - (clean vacuum_cleaner hallway)
-vacuum_cleaner>OnlinePlanning#14 - (move vacuum_cleaner hallway bathroom)
-vacuum_cleaner>OnlinePlanning#14 - (clean vacuum_cleaner bathroom)
-vacuum_cleaner>OnlinePlanning#14 - (move vacuum_cleaner bathroom hallway)
-vacuum_cleaner>OnlinePlanning#14 - (move vacuum_cleaner hallway bedroom)
-vacuum_cleaner>OnlinePlanning#14 - (clean vacuum_cleaner bedroom)
-vacuum_cleaner>OnlinePlanning#14 - (move vacuum_cleaner bedroom hallway)
-vacuum_cleaner>OnlinePlanning#14 - (move vacuum_cleaner hallway baby_room)
-vacuum_cleaner>OnlinePlanning#14 - (clean vacuum_cleaner baby_room)
-vacuum_cleaner>OnlinePlanning#14 - (cleanall vacuum_cleaner hallway bathroom bedroom baby_room)
-vacuum_cleaner>OnlinePlanning#14 - (move vacuum_cleaner baby_room hallway)
-vacuum_cleaner>OnlinePlanning#14 - (returntobase vacuum_cleaner hallway)
-vacuum_cleaner>OnlinePlanning#14 - (switchoff vacuum_cleaner)
-vacuum_cleaner>OnlinePlanning#14 - (lasttask vacuum_cleaner)
-vacuum_cleaner>OnlinePlanning#14 Starting sequential step (SwitchOn vacuum_cleaner) Effect: switch_on vacuum_cleaner
-vacuum_cleaner>SwitchOn#15     Intention started
-vacuum_cleaner                 Belief changed: switch_on vacuum_cleaner
+vacuumCleaner                  Trying to use intention VacuumCleanerIntention to achieve goal VacuumCleanerGoal#22[object Object]
+vacuumCleaner>VacuumCleanerIntention#22 Intention started
+vacuumCleaner                  Trying to use intention RetryFourTimesIntention to achieve goal RetryGoal#24[object Object]
+vacuumCleaner>RetryFourTimesIntention#23 Intention started
+vacuumCleaner                  Trying to use intention OnlinePlanning to achieve goal PddlGoal#23[object Object]
+vacuumCleaner>OnlinePlanning#24 Intention started
+0:01:15 vacuumCleaner>OnlinePlanning#24 Plan found:
+vacuumCleaner>OnlinePlanning#24 - (switchon vacuum_cleaner hallway full empty)
+vacuumCleaner>OnlinePlanning#24 - (exitfrombase vacuum_cleaner hallway)
+vacuumCleaner>OnlinePlanning#24 - (clean vacuum_cleaner hallway)
+vacuumCleaner>OnlinePlanning#24 - (move vacuum_cleaner hallway bathroom)
+vacuumCleaner>OnlinePlanning#24 - (clean vacuum_cleaner bathroom)
+vacuumCleaner>OnlinePlanning#24 - (move vacuum_cleaner bathroom hallway)
+vacuumCleaner>OnlinePlanning#24 - (move vacuum_cleaner hallway bedroom)
+vacuumCleaner>OnlinePlanning#24 - (clean vacuum_cleaner bedroom)
+vacuumCleaner>OnlinePlanning#24 - (move vacuum_cleaner bedroom hallway)
+vacuumCleaner>OnlinePlanning#24 - (move vacuum_cleaner hallway baby_room)
+vacuumCleaner>OnlinePlanning#24 - (clean vacuum_cleaner baby_room)
+vacuumCleaner>OnlinePlanning#24 Starting sequential step (SwitchOn vacuum_cleaner hallway full empty) Effect: switch_on vacuum_cleaner
+vacuumCleaner>SwitchOn#25      Intention started
+vacuumCleaner                  Belief changed: switch_on vacuum_cleaner
 0:01:30 vacuum_cleaner turned on
-vacuum_cleaner                 Belief changed: not switch_off vacuum_cleaner
-0:01:45 vacuum_cleaner>SwitchOn#15     Intention success
-vacuum_cleaner>OnlinePlanning#14 Starting sequential step (ExitFromBase vacuum_cleaner) Effect: not_in_base vacuum_cleaner
-vacuum_cleaner>ExitFromBase#16 Intention started
-vacuum_cleaner                 Belief changed: not_in_base vacuum_cleaner
+vacuumCleaner                  Belief changed: not switch_off vacuum_cleaner
+vacuumCleaner>SwitchOn#25      Intention success
+vacuumCleaner>OnlinePlanning#24 Starting sequential step (ExitFromBase vacuum_cleaner hallway) Effect: not_in_base vacuum_cleaner
+vacuumCleaner>ExitFromBase#26  Intention started
+vacuumCleaner                  Belief changed: not_in_base vacuum_cleaner
 0:02:00 vacuum_cleaner is out of base
-vacuum_cleaner                 Belief changed: not in_base vacuum_cleaner
-vacuum_cleaner>ExitFromBase#16 Intention success
-vacuum_cleaner>OnlinePlanning#14 Starting sequential step (Clean vacuum_cleaner hallway) Effect: cleaned hallway
-vacuum_cleaner>Clean#17        Intention started
-vacuum_cleaner                 Belief changed: cleaned hallway
+vacuumCleaner                  Belief changed: not in_base vacuum_cleaner
+vacuumCleaner>ExitFromBase#26  Intention success
+vacuumCleaner>OnlinePlanning#24 Starting sequential step (Clean vacuum_cleaner hallway) Effect: cleaned hallway
+vacuumCleaner>Clean#27         Intention started
+vacuumCleaner                  Belief changed: cleaned hallway
 0:02:15 vacuum_cleaner has cleaned the hallway
-vacuum_cleaner                 Belief changed: not not_cleaned hallway
-vacuum_cleaner>Clean#17        Intention success
-vacuum_cleaner>OnlinePlanning#14 Starting sequential step (Move vacuum_cleaner hallway bathroom) Effect: in_room vacuum_cleaner bathroom,not in_room vacuum_cleaner hallway
-vacuum_cleaner>Move#18         Intention started
-vacuum_cleaner                 Belief changed: in_room vacuum_cleaner bathroom
-vacuum_cleaner                 Belief changed: not in_room vacuum_cleaner hallway
+vacuumCleaner                  Belief changed: not not_cleaned hallway
+vacuumCleaner>Clean#27         Intention success
+vacuumCleaner>OnlinePlanning#24 Starting sequential step (Move vacuum_cleaner hallway bathroom) Effect: in_room vacuum_cleaner bathroom,not in_room vacuum_cleaner hallway
+vacuumCleaner>Move#28          Intention started
+vacuumCleaner                  Belief changed: in_room vacuum_cleaner bathroom
+vacuumCleaner                  Belief changed: not in_room vacuum_cleaner hallway
 0:02:30 Moving vacuum_cleaner from hallway to bathroom
-vacuum_cleaner>Move#18         Intention success
-vacuum_cleaner>OnlinePlanning#14 Starting sequential step (Clean vacuum_cleaner bathroom) Effect: cleaned bathroom
-vacuum_cleaner>Clean#19        Intention started
-vacuum_cleaner                 Belief changed: cleaned bathroom
+vacuumCleaner>Move#28          Intention success
+vacuumCleaner>OnlinePlanning#24 Starting sequential step (Clean vacuum_cleaner bathroom) Effect: cleaned bathroom
+vacuumCleaner>Clean#29         Intention started
+vacuumCleaner                  Belief changed: cleaned bathroom
 0:02:45 vacuum_cleaner has cleaned the bathroom
-vacuum_cleaner                 Belief changed: not not_cleaned bathroom
-vacuum_cleaner>Clean#19        Intention success
-vacuum_cleaner>OnlinePlanning#14 Starting sequential step (Move vacuum_cleaner bathroom hallway) Effect: in_room vacuum_cleaner hallway,not in_room vacuum_cleaner bathroom
-vacuum_cleaner>Move#20         Intention started
-vacuum_cleaner                 Belief changed: in_room vacuum_cleaner hallway
-vacuum_cleaner                 Belief changed: not in_room vacuum_cleaner bathroom
+vacuumCleaner                  Belief changed: not not_cleaned bathroom
+vacuumCleaner>Clean#29         Intention success
+vacuumCleaner>OnlinePlanning#24 Starting sequential step (Move vacuum_cleaner bathroom hallway) Effect: in_room vacuum_cleaner hallway,not in_room vacuum_cleaner bathroom
+vacuumCleaner>Move#30          Intention started
+vacuumCleaner                  Belief changed: in_room vacuum_cleaner hallway
+vacuumCleaner                  Belief changed: not in_room vacuum_cleaner bathroom
 0:03:00 Moving vacuum_cleaner from bathroom to hallway
-vacuum_cleaner>Move#20         Intention success
-vacuum_cleaner>OnlinePlanning#14 Starting sequential step (Move vacuum_cleaner hallway bedroom) Effect: in_room vacuum_cleaner bedroom,not in_room vacuum_cleaner hallway
-vacuum_cleaner>Move#21         Intention started
-vacuum_cleaner                 Belief changed: in_room vacuum_cleaner bedroom
-vacuum_cleaner                 Belief changed: not in_room vacuum_cleaner hallway
+vacuumCleaner>Move#30          Intention success
+vacuumCleaner>OnlinePlanning#24 Starting sequential step (Move vacuum_cleaner hallway bedroom) Effect: in_room vacuum_cleaner bedroom,not in_room vacuum_cleaner hallway
+vacuumCleaner>Move#31          Intention started
+vacuumCleaner                  Belief changed: in_room vacuum_cleaner bedroom
+vacuumCleaner                  Belief changed: not in_room vacuum_cleaner hallway
 0:03:15 Moving vacuum_cleaner from hallway to bedroom
-vacuum_cleaner>Move#21         Intention success
-vacuum_cleaner>OnlinePlanning#14 Starting sequential step (Clean vacuum_cleaner bedroom) Effect: cleaned bedroom
-vacuum_cleaner>Clean#22        Intention started
-vacuum_cleaner                 Belief changed: cleaned bedroom
+vacuumCleaner>Move#31          Intention success
+vacuumCleaner>OnlinePlanning#24 Starting sequential step (Clean vacuum_cleaner bedroom) Effect: cleaned bedroom
+vacuumCleaner>Clean#32         Intention started
+vacuumCleaner                  Belief changed: cleaned bedroom
 0:03:30 vacuum_cleaner has cleaned the bedroom
-vacuum_cleaner                 Belief changed: not not_cleaned bedroom
-vacuum_cleaner>Clean#22        Intention success
-vacuum_cleaner>OnlinePlanning#14 Starting sequential step (Move vacuum_cleaner bedroom hallway) Effect: in_room vacuum_cleaner hallway,not in_room vacuum_cleaner bedroom
-vacuum_cleaner>Move#23         Intention started
-vacuum_cleaner                 Belief changed: in_room vacuum_cleaner hallway
-vacuum_cleaner                 Belief changed: not in_room vacuum_cleaner bedroom
+vacuumCleaner                  Belief changed: not not_cleaned bedroom
+vacuumCleaner>Clean#32         Intention success
+vacuumCleaner>OnlinePlanning#24 Starting sequential step (Move vacuum_cleaner bedroom hallway) Effect: in_room vacuum_cleaner hallway,not in_room vacuum_cleaner bedroom
+vacuumCleaner>Move#33          Intention started
+vacuumCleaner                  Belief changed: in_room vacuum_cleaner hallway
+vacuumCleaner                  Belief changed: not in_room vacuum_cleaner bedroom
 0:03:45 Moving vacuum_cleaner from bedroom to hallway
-vacuum_cleaner>Move#23         Intention success
-vacuum_cleaner>OnlinePlanning#14 Starting sequential step (Move vacuum_cleaner hallway baby_room) Effect: in_room vacuum_cleaner baby_room,not in_room vacuum_cleaner hallway
-vacuum_cleaner>Move#24         Intention started
-vacuum_cleaner                 Belief changed: in_room vacuum_cleaner baby_room
-vacuum_cleaner                 Belief changed: not in_room vacuum_cleaner hallway
+vacuumCleaner>Move#33          Intention success
+vacuumCleaner>OnlinePlanning#24 Starting sequential step (Move vacuum_cleaner hallway baby_room) Effect: in_room vacuum_cleaner baby_room,not in_room vacuum_cleaner hallway
+vacuumCleaner>Move#34          Intention started
+vacuumCleaner                  Belief changed: in_room vacuum_cleaner baby_room
+vacuumCleaner                  Belief changed: not in_room vacuum_cleaner hallway
 0:04:00 Moving vacuum_cleaner from hallway to baby_room
-vacuum_cleaner>Move#24         Intention success
-vacuum_cleaner>OnlinePlanning#14 Starting sequential step (Clean vacuum_cleaner baby_room) Effect: cleaned baby_room
-vacuum_cleaner>Clean#25        Intention started
-vacuum_cleaner                 Belief changed: cleaned baby_room
+vacuumCleaner>Move#34          Intention success
+vacuumCleaner>OnlinePlanning#24 Starting sequential step (Clean vacuum_cleaner baby_room) Effect: cleaned baby_room
+vacuumCleaner>Clean#35         Intention started
+vacuumCleaner                  Belief changed: cleaned baby_room
 0:04:15 vacuum_cleaner has cleaned the baby_room
-vacuum_cleaner                 Belief changed: not not_cleaned baby_room
-vacuum_cleaner>Clean#25        Intention success
-vacuum_cleaner>OnlinePlanning#14 Starting sequential step (CleanAll vacuum_cleaner hallway bathroom bedroom baby_room) Effect: clean_all vacuum_cleaner
-vacuum_cleaner>CleanAll#26     Intention started
-vacuum_cleaner                 Belief changed: clean_all vacuum_cleaner
-0:04:30 vacuum_cleaner has cleaned all the room, for a total of 4 rooms. Returning to base
-vacuum_cleaner>CleanAll#26     Intention success
-vacuum_cleaner>OnlinePlanning#14 Starting sequential step (Move vacuum_cleaner baby_room hallway) Effect: in_room vacuum_cleaner hallway,not in_room vacuum_cleaner baby_room
-vacuum_cleaner>Move#27         Intention started
-vacuum_cleaner                 Belief changed: in_room vacuum_cleaner hallway
-vacuum_cleaner                 Belief changed: not in_room vacuum_cleaner baby_room
-0:04:45 Moving vacuum_cleaner from baby_room to hallway
-vacuum_cleaner>Move#27         Intention success
-vacuum_cleaner>OnlinePlanning#14 Starting sequential step (ReturnToBase vacuum_cleaner hallway) Effect: in_base_finished vacuum_cleaner
-vacuum_cleaner>ReturnToBase#28 Intention started
-vacuum_cleaner                 Belief changed: in_base_finished vacuum_cleaner
-0:05:00 vacuum_cleaner has returned to the base
-vacuum_cleaner                 Belief changed: not not_in_base vacuum_cleaner
-vacuum_cleaner>ReturnToBase#28 Intention success
-vacuum_cleaner>OnlinePlanning#14 Starting sequential step (SwitchOff vacuum_cleaner) Effect: switch_off_finished vacuum_cleaner
-vacuum_cleaner>SwitchOff#29    Intention started
-vacuum_cleaner                 Belief changed: switch_off_finished vacuum_cleaner
-0:05:15 vacuum_cleaner turned off
-vacuum_cleaner                 Belief changed: not switch_on vacuum_cleaner
-vacuum_cleaner>SwitchOff#29    Intention success
-vacuum_cleaner>OnlinePlanning#14 Starting sequential step (LastTask vacuum_cleaner) Effect: finish_clean vacuum_cleaner
-vacuum_cleaner>LastTask#30     Intention started
-vacuum_cleaner                 Belief changed: finish_clean vacuum_cleaner
-0:05:30 vacuum_cleaner has finished the task
+vacuumCleaner                  Belief changed: not not_cleaned baby_room
+vacuumCleaner>Clean#35         Intention success
+vacuumCleaner>OnlinePlanning#24 Intention success
+vacuumCleaner                  Succesfully used intention OnlinePlanning to achieve goal PddlGoal#23[object Object]
+vacuumCleaner>RetryFourTimesIntention#23 Intention success
+vacuumCleaner                  Succesfully used intention RetryFourTimesIntention to achieve goal RetryGoal#24[object Object]
+vacuumCleaner                  Trying to use intention RetryFourTimesIntention to achieve goal RetryGoal#37[object Object]
+vacuumCleaner>RetryFourTimesIntention#36 Intention started
+vacuumCleaner                  Trying to use intention OnlinePlanning to achieve goal PddlGoal#36[object Object]
+vacuumCleaner>OnlinePlanning#37 Intention started
+0:05:00 vacuumCleaner>OnlinePlanning#37 Plan found:
+vacuumCleaner>OnlinePlanning#37 - (move vacuum_cleaner baby_room hallway)
+vacuumCleaner>OnlinePlanning#37 - (returntobase vacuum_cleaner hallway)
+vacuumCleaner>OnlinePlanning#37 - (switchoff vacuum_cleaner hallway)
+vacuumCleaner>OnlinePlanning#37 Starting sequential step (Move vacuum_cleaner baby_room hallway) Effect: in_room vacuum_cleaner hallway,not in_room vacuum_cleaner baby_room
+vacuumCleaner>Move#38          Intention started
+vacuumCleaner                  Belief changed: in_room vacuum_cleaner hallway
+vacuumCleaner                  Belief changed: not in_room vacuum_cleaner baby_room
+0:05:15 Moving vacuum_cleaner from baby_room to hallway
+vacuumCleaner>Move#38          Intention success
+vacuumCleaner>OnlinePlanning#37 Starting sequential step (ReturnToBase vacuum_cleaner hallway) Effect: in_base vacuum_cleaner
+vacuumCleaner>ReturnToBase#39  Intention started
+vacuumCleaner                  Belief changed: in_base vacuum_cleaner
+0:05:30 vacuum_cleaner has cleaned all the room, for a total of 4 rooms. Returning to base
+vacuum_cleaner has returned to the base
+vacuumCleaner                  Belief changed: not not_in_base vacuum_cleaner
+vacuumCleaner>ReturnToBase#39  Intention success
+vacuumCleaner>OnlinePlanning#37 Starting sequential step (SwitchOff vacuum_cleaner hallway) Effect: switch_off vacuum_cleaner
+vacuumCleaner>SwitchOff#40     Intention started
+vacuumCleaner                  Belief changed: switch_off vacuum_cleaner
+0:05:45 vacuum_cleaner turned off
+vacuum_cleaner has finished the task
         INFOS
         Battery: 52 %
         Water  : 1.2000000000000002 L
         Garbage: 60 %
-vacuum_cleaner>LastTask#30     Intention success
-vacuum_cleaner>OnlinePlanning#14 Intention success
-vacuum_cleaner                 Succesfully used intention OnlinePlanning to achieve goal PddlGoal#13[object Object]
-0:05:45 vacuum_cleaner>RetryFourTimesIntention#13 Intention success
-vacuum_cleaner                 Succesfully used intention RetryFourTimesIntention to achieve goal RetryGoal#14[object Object]
-0:07:00 garage_light turned on
-The tilting is open
+vacuumCleaner                  Belief changed: not switch_on vacuum_cleaner
+vacuumCleaner>SwitchOff#40     Intention success
+vacuumCleaner>OnlinePlanning#37 Intention success
+vacuumCleaner                  Succesfully used intention OnlinePlanning to achieve goal PddlGoal#36[object Object]
+vacuumCleaner>RetryFourTimesIntention#36 Intention success
+vacuumCleaner                  Succesfully used intention RetryFourTimesIntention to achieve goal RetryGoal#37[object Object]
+vacuumCleaner>VacuumCleanerIntention#22 Intention success
+vacuumCleaner                  Succesfully used intention VacuumCleanerIntention to achieve goal VacuumCleanerGoal#22[object Object]
 0:08:30 - Garden robot agent -
 
 GOAL: cut all grass and return to the base
 
-robot_garden                   Trying to use intention RetryFourTimesIntention to achieve goal RetryGoal#32[object Object]
-robot_garden>RetryFourTimesIntention#31 Intention started
-robot_garden                   Trying to use intention OnlinePlanning to achieve goal PddlGoal#31[object Object]
-robot_garden>OnlinePlanning#32 Intention started
-0:09:00 garage_light is already on
-The tilting is close
-0:09:30 robot_garden>OnlinePlanning#32 Plan found:
-robot_garden>OnlinePlanning#32 - (switchon_gr robot_garden good over_zero)
-robot_garden>OnlinePlanning#32 - (exitfrombase_gr robot_garden)
-robot_garden>OnlinePlanning#32 - (cutgrass robot_garden garage)
-robot_garden>OnlinePlanning#32 - (move_gr robot_garden garage entrance)
-robot_garden>OnlinePlanning#32 - (cutgrass robot_garden entrance)
-robot_garden>OnlinePlanning#32 - (move_gr robot_garden entrance kitchen)
-robot_garden>OnlinePlanning#32 - (cutgrass robot_garden kitchen)
-robot_garden>OnlinePlanning#32 - (move_gr robot_garden kitchen living_room)
-robot_garden>OnlinePlanning#32 - (cutgrass robot_garden living_room)
-robot_garden>OnlinePlanning#32 - (cutall robot_garden garage entrance living_room kitchen)
-robot_garden>OnlinePlanning#32 - (move_gr robot_garden living_room garage)
-robot_garden>OnlinePlanning#32 - (returntobase_gr robot_garden garage)
-robot_garden>OnlinePlanning#32 - (switchoff_gr robot_garden)
-robot_garden>OnlinePlanning#32 - (lasttask_gr robot_garden)
-robot_garden>OnlinePlanning#32 Starting sequential step (SwitchOn_gr robot_garden good over_zero) Effect: switch_on robot_garden
-robot_garden>SwitchOn_gr#33    Intention started
-robot_garden                   Belief changed: switch_on robot_garden
-0:09:45 garage_light is already on
+gardenRobot                    Trying to use intention GardenRobotIntention to achieve goal GardenRobotGoal#41[object Object]
+gardenRobot>GardenRobotIntention#41 Intention started
+gardenRobot                    Trying to use intention RetryFourTimesIntention to achieve goal RetryGoal#43[object Object]
+gardenRobot>RetryFourTimesIntention#42 Intention started
+gardenRobot                    Trying to use intention OnlinePlanning to achieve goal PddlGoal#42[object Object]
+gardenRobot>OnlinePlanning#43  Intention started
+0:09:00 gardenRobot>OnlinePlanning#43  Plan found:
+gardenRobot>OnlinePlanning#43  - (switchon_gr robot_garden good over_zero garage)
+gardenRobot>OnlinePlanning#43  Starting sequential step (SwitchOn_gr robot_garden good over_zero garage) Effect: switch_on robot_garden
+gardenRobot>SwitchOn_gr#44     Intention started
+gardenRobot                    Belief changed: switch_on robot_garden
+0:09:15 robot_garden turned on
+gardenRobot                    Belief changed: not switch_off robot_garden
+houseAgent                     Trying to use intention PostmanAcceptAllRequest to achieve goal Postman#46[object Object]
+houseAgent>PostmanAcceptAllRequest#45 Intention started
+houseAgent>PostmanAcceptAllRequest#20 Reading received message OpenCloseTiltingGoal#45[object Object]
+houseAgent                     Trying to use intention OpenCloseTiltingIntention to achieve goal OpenCloseTiltingGoal#45[object Object]
+houseAgent>OpenCloseTiltingIntention#46 Intention started
+gardenRobot>SwitchOn_gr#44     Intention success
 The tilting is open
-robot_garden turned on
-robot_garden                   Belief changed: not switch_off robot_garden
-robot_garden>SwitchOn_gr#33    Intention success
-robot_garden>OnlinePlanning#32 Starting sequential step (ExitFromBase_gr robot_garden) Effect: not_in_base robot_garden
-robot_garden>ExitFromBase_gr#34 Intention started
-robot_garden                   Belief changed: not_in_base robot_garden
-0:10:00 robot_garden is out of base
-robot_garden                   Belief changed: not in_base robot_garden
-robot_garden>ExitFromBase_gr#34 Intention success
-robot_garden>OnlinePlanning#32 Starting sequential step (CutGrass robot_garden garage) Effect: cut garage
-robot_garden>CutGrass#35       Intention started
-robot_garden                   Belief changed: cut garage
-0:10:15 robot_garden has cut the garage field
-robot_garden                   Belief changed: not not_cut garage
-0:10:30 robot_garden>CutGrass#35       Intention success
-robot_garden>OnlinePlanning#32 Starting sequential step (Move_gr robot_garden garage entrance) Effect: in_field robot_garden entrance,not in_field robot_garden garage
-robot_garden>Move_gr#36        Intention started
-robot_garden                   Belief changed: in_field robot_garden entrance
-robot_garden                   Belief changed: not in_field robot_garden garage
+gardenRobot                    Belief changed: tilting open
+houseAgent>OpenCloseTiltingIntention#46 Intention success
+houseAgent                     Succesfully used intention OpenCloseTiltingIntention to achieve goal OpenCloseTiltingGoal#45[object Object]
+gardenRobot>OnlinePlanning#43  Intention success
+gardenRobot                    Succesfully used intention OnlinePlanning to achieve goal PddlGoal#42[object Object]
+gardenRobot>RetryFourTimesIntention#42 Intention success
+gardenRobot                    Succesfully used intention RetryFourTimesIntention to achieve goal RetryGoal#43[object Object]
+gardenRobot                    Trying to use intention RetryFourTimesIntention to achieve goal RetryGoal#48[object Object]
+gardenRobot>RetryFourTimesIntention#47 Intention started
+gardenRobot                    Trying to use intention OnlinePlanning to achieve goal PddlGoal#47[object Object]
+gardenRobot>OnlinePlanning#48  Intention started
+0:10:00 gardenRobot>OnlinePlanning#48  Plan found:
+gardenRobot>OnlinePlanning#48  - (exitfrombase_gr robot_garden garage open)
+gardenRobot>OnlinePlanning#48  - (cutgrass robot_garden garage)
+gardenRobot>OnlinePlanning#48  - (move_gr robot_garden garage entrance)
+gardenRobot>OnlinePlanning#48  - (cutgrass robot_garden entrance)
+gardenRobot>OnlinePlanning#48  - (move_gr robot_garden entrance kitchen)
+gardenRobot>OnlinePlanning#48  - (cutgrass robot_garden kitchen)
+gardenRobot>OnlinePlanning#48  Starting sequential step (ExitFromBase_gr robot_garden garage open) Effect: not_in_base robot_garden
+gardenRobot>ExitFromBase_gr#49 Intention started
+gardenRobot                    Belief changed: not_in_base robot_garden
+0:10:15 robot_garden is out of base
+gardenRobot                    Belief changed: not in_base robot_garden
+gardenRobot>ExitFromBase_gr#49 Intention success
+gardenRobot>OnlinePlanning#48  Starting sequential step (CutGrass robot_garden garage) Effect: cut garage
+gardenRobot>CutGrass#50        Intention started
+gardenRobot                    Belief changed: cut garage
+0:10:30 robot_garden has cut the garage field
+gardenRobot                    Belief changed: not not_cut garage
+gardenRobot>CutGrass#50        Intention success
+gardenRobot>OnlinePlanning#48  Starting sequential step (Move_gr robot_garden garage entrance) Effect: in_field robot_garden entrance,not in_field robot_garden garage
+gardenRobot>Move_gr#51         Intention started
+gardenRobot                    Belief changed: in_field robot_garden entrance
+gardenRobot                    Belief changed: not in_field robot_garden garage
 0:10:45 Moving robot_garden from garage to entrance field
-robot_garden>Move_gr#36        Intention success
-robot_garden>OnlinePlanning#32 Starting sequential step (CutGrass robot_garden entrance) Effect: cut entrance
-robot_garden>CutGrass#37       Intention started
-robot_garden                   Belief changed: cut entrance
+gardenRobot>Move_gr#51         Intention success
+gardenRobot>OnlinePlanning#48  Starting sequential step (CutGrass robot_garden entrance) Effect: cut entrance
+gardenRobot>CutGrass#52        Intention started
+gardenRobot                    Belief changed: cut entrance
 0:11:00 robot_garden has cut the entrance field
-robot_garden                   Belief changed: not not_cut entrance
-robot_garden>CutGrass#37       Intention success
-robot_garden>OnlinePlanning#32 Starting sequential step (Move_gr robot_garden entrance kitchen) Effect: in_field robot_garden kitchen,not in_field robot_garden entrance
-robot_garden>Move_gr#38        Intention started
-robot_garden                   Belief changed: in_field robot_garden kitchen
-robot_garden                   Belief changed: not in_field robot_garden entrance
+gardenRobot                    Belief changed: not not_cut entrance
+gardenRobot>CutGrass#52        Intention success
+gardenRobot>OnlinePlanning#48  Starting sequential step (Move_gr robot_garden entrance kitchen) Effect: in_field robot_garden kitchen,not in_field robot_garden entrance
+gardenRobot>Move_gr#53         Intention started
+gardenRobot                    Belief changed: in_field robot_garden kitchen
+gardenRobot                    Belief changed: not in_field robot_garden entrance
 0:11:15 Moving robot_garden from entrance to kitchen field
-robot_garden>Move_gr#38        Intention success
-robot_garden>OnlinePlanning#32 Starting sequential step (CutGrass robot_garden kitchen) Effect: cut kitchen
-robot_garden>CutGrass#39       Intention started
-robot_garden                   Belief changed: cut kitchen
+gardenRobot>Move_gr#53         Intention success
+gardenRobot>OnlinePlanning#48  Starting sequential step (CutGrass robot_garden kitchen) Effect: cut kitchen
+gardenRobot>CutGrass#54        Intention started
+gardenRobot                    Belief changed: cut kitchen
 0:11:30 robot_garden has cut the kitchen field
-robot_garden                   Belief changed: not not_cut kitchen
-robot_garden>CutGrass#39       Intention success
-robot_garden>OnlinePlanning#32 Starting sequential step (Move_gr robot_garden kitchen living_room) Effect: in_field robot_garden living_room,not in_field robot_garden kitchen
-robot_garden>Move_gr#40        Intention started
-robot_garden                   Belief changed: in_field robot_garden living_room
-robot_garden                   Belief changed: not in_field robot_garden kitchen
-0:11:45 Moving robot_garden from kitchen to living_room field
-robot_garden>Move_gr#40        Intention success
-robot_garden>OnlinePlanning#32 Starting sequential step (CutGrass robot_garden living_room) Effect: cut living_room
-robot_garden>CutGrass#41       Intention started
-robot_garden                   Belief changed: cut living_room
-0:12:00 robot_garden has cut the living_room field
-robot_garden                   Belief changed: not not_cut living_room
-robot_garden>CutGrass#41       Intention success
-robot_garden>OnlinePlanning#32 Starting sequential step (CutAll robot_garden garage entrance living_room kitchen) Effect: cut_all robot_garden
-robot_garden>CutAll#42         Intention started
-robot_garden                   Belief changed: cut_all robot_garden
-0:12:15 robot_garden has cut all the fields around the house. Returning to base
-robot_garden>CutAll#42         Intention success
-robot_garden>OnlinePlanning#32 Starting sequential step (Move_gr robot_garden living_room garage) Effect: in_field robot_garden garage,not in_field robot_garden living_room
-robot_garden>Move_gr#43        Intention started
-robot_garden                   Belief changed: in_field robot_garden garage
-robot_garden                   Belief changed: not in_field robot_garden living_room
-0:12:30 Moving robot_garden from living_room to garage field
-robot_garden>Move_gr#43        Intention success
-robot_garden>OnlinePlanning#32 Starting sequential step (ReturnToBase_gr robot_garden garage) Effect: in_base_finished robot_garden
-robot_garden>ReturnToBase_gr#44 Intention started
-robot_garden                   Belief changed: in_base_finished robot_garden
-0:12:45 robot_garden has returned to the base
-robot_garden                   Belief changed: not not_in_base robot_garden
-robot_garden>ReturnToBase_gr#44 Intention success
-robot_garden>OnlinePlanning#32 Starting sequential step (SwitchOff_gr robot_garden) Effect: switch_off_finished robot_garden
-robot_garden>SwitchOff_gr#45   Intention started
-robot_garden                   Belief changed: switch_off_finished robot_garden
-0:13:00 robot_garden turned off
-robot_garden                   Belief changed: not switch_on robot_garden
-robot_garden>SwitchOff_gr#45   Intention success
-robot_garden>OnlinePlanning#32 Starting sequential step (LastTask_gr robot_garden) Effect: finish_cut robot_garden
-robot_garden>LastTask_gr#46    Intention started
-robot_garden                   Belief changed: finish_cut robot_garden
-0:13:15 robot_garden has finished the task
+gardenRobot                    Belief changed: not not_cut kitchen
+gardenRobot>CutGrass#54        Intention success
+gardenRobot>OnlinePlanning#48  Intention success
+gardenRobot                    Succesfully used intention OnlinePlanning to achieve goal PddlGoal#47[object Object]
+gardenRobot>RetryFourTimesIntention#47 Intention success
+gardenRobot                    Succesfully used intention RetryFourTimesIntention to achieve goal RetryGoal#48[object Object]
+0:11:45 gardenRobot                    Trying to use intention RetryFourTimesIntention to achieve goal RetryGoal#56[object Object]
+gardenRobot>RetryFourTimesIntention#55 Intention started
+gardenRobot                    Trying to use intention OnlinePlanning to achieve goal PddlGoal#55[object Object]
+gardenRobot>OnlinePlanning#56  Intention started
+0:12:15 gardenRobot>OnlinePlanning#56  Plan found:
+gardenRobot>OnlinePlanning#56  - (move_gr robot_garden kitchen entrance)
+gardenRobot>OnlinePlanning#56  - (move_gr robot_garden entrance garage)
+gardenRobot>OnlinePlanning#56  - (returntobase_gr robot_garden garage)
+gardenRobot>OnlinePlanning#56  - (switchoff_gr robot_garden garage)
+gardenRobot>OnlinePlanning#56  Starting sequential step (Move_gr robot_garden kitchen entrance) Effect: in_field robot_garden entrance,not in_field robot_garden kitchen
+gardenRobot>Move_gr#57         Intention started
+gardenRobot                    Belief changed: in_field robot_garden entrance
+gardenRobot                    Belief changed: not in_field robot_garden kitchen
+0:12:30 Moving robot_garden from kitchen to entrance field
+gardenRobot>Move_gr#57         Intention success
+gardenRobot>OnlinePlanning#56  Starting sequential step (Move_gr robot_garden entrance garage) Effect: in_field robot_garden garage,not in_field robot_garden entrance
+gardenRobot>Move_gr#58         Intention started
+gardenRobot                    Belief changed: in_field robot_garden garage
+gardenRobot                    Belief changed: not in_field robot_garden entrance
+0:12:45 Moving robot_garden from entrance to garage field
+gardenRobot>Move_gr#58         Intention success
+gardenRobot>OnlinePlanning#56  Starting sequential step (ReturnToBase_gr robot_garden garage) Effect: in_base robot_garden
+gardenRobot>ReturnToBase_gr#59 Intention started
+gardenRobot                    Belief changed: in_base robot_garden
+0:13:00 robot_garden has returned to the base
+gardenRobot                    Belief changed: not not_in_base robot_garden
+gardenRobot>ReturnToBase_gr#59 Intention success
+gardenRobot>OnlinePlanning#56  Starting sequential step (SwitchOff_gr robot_garden garage) Effect: switch_off robot_garden
+gardenRobot>SwitchOff_gr#60    Intention started
+gardenRobot                    Belief changed: switch_off robot_garden
+0:13:15 robot_garden turned off
+robot_garden has finished the task
         INFOS
-        Battery: 28 %
-garage_light is already on
+        Battery: 46 %
+gardenRobot                    Belief changed: not switch_on robot_garden
+houseAgent                     Trying to use intention PostmanAcceptAllRequest to achieve goal Postman#62[object Object]
+houseAgent>PostmanAcceptAllRequest#61 Intention started
+houseAgent>PostmanAcceptAllRequest#45 Reading received message OpenCloseTiltingGoal#61[object Object]
+houseAgent                     Trying to use intention OpenCloseTiltingIntention to achieve goal OpenCloseTiltingGoal#61[object Object]
+houseAgent>OpenCloseTiltingIntention#62 Intention started
+gardenRobot>SwitchOff_gr#60    Intention success
 The tilting is close
-robot_garden>LastTask_gr#46    Intention success
-robot_garden>OnlinePlanning#32 Intention success
-robot_garden                   Succesfully used intention OnlinePlanning to achieve goal PddlGoal#31[object Object]
-robot_garden>RetryFourTimesIntention#31 Intention success
-robot_garden                   Succesfully used intention RetryFourTimesIntention to achieve goal RetryGoal#32[object Object]
+gardenRobot                    Belief changed: not tilting open
+houseAgent>OpenCloseTiltingIntention#62 Intention success
+houseAgent                     Succesfully used intention OpenCloseTiltingIntention to achieve goal OpenCloseTiltingGoal#61[object Object]
+gardenRobot>OnlinePlanning#56  Intention success
+gardenRobot                    Succesfully used intention OnlinePlanning to achieve goal PddlGoal#55[object Object]
+gardenRobot>RetryFourTimesIntention#55 Intention success
+gardenRobot                    Succesfully used intention RetryFourTimesIntention to achieve goal RetryGoal#56[object Object]
+0:13:30 gardenRobot>GardenRobotIntention#41 Intention success
+gardenRobot                    Succesfully used intention GardenRobotIntention to achieve goal GardenRobotGoal#41[object Object]
 0:16:00 - Heatpump agent -
 
 GOAL: set the temperature of the heat pump high
 
-garage_pump                    Trying to use intention RetryFourTimesIntention to achieve goal RetryGoal#48[object Object]
-garage_pump>RetryFourTimesIntention#47 Intention started
-garage_pump                    Trying to use intention OnlinePlanning to achieve goal PddlGoal#47[object Object]
-garage_pump>OnlinePlanning#48  Intention started
-0:16:30 garage_pump>OnlinePlanning#48  Plan found:
-garage_pump>OnlinePlanning#48  - (switchon_hp heat_pump)
-garage_pump>OnlinePlanning#48  - (settemplow heat_pump)
-garage_pump>OnlinePlanning#48  - (settemphigh heat_pump solar_panel car_charger window_open)
-garage_pump>OnlinePlanning#48  Starting sequential step (SwitchOn_hp heat_pump) Effect: switch_on heat_pump
-garage_pump>SwitchOn_hp#49     Intention started
-garage_pump                    Belief changed: switch_on heat_pump
+heatPump                       Trying to use intention RetryFourTimesIntention to achieve goal RetryGoal#64[object Object]
+heatPump>RetryFourTimesIntention#63 Intention started
+heatPump                       Trying to use intention OnlinePlanning to achieve goal PddlGoal#63[object Object]
+heatPump>OnlinePlanning#64     Intention started
+0:16:30 heatPump>OnlinePlanning#64     Plan found:
+heatPump>OnlinePlanning#64     - (switchon_hp heat_pump)
+heatPump>OnlinePlanning#64     - (settemplow heat_pump)
+heatPump>OnlinePlanning#64     - (settemphigh heat_pump solar_panel car_charger window_open)
+heatPump>OnlinePlanning#64     Starting sequential step (SwitchOn_hp heat_pump) Effect: switch_on heat_pump
+heatPump>SwitchOn_hp#65        Intention started
+heatPump                       Belief changed: switch_on heat_pump
 0:16:45 Heat pump is ON
 Low temperature (50 degrees) set on heat pump
-garage_pump                    Belief changed: not switch_off heat_pump
-garage_pump>SwitchOn_hp#49     Intention success
-garage_pump>OnlinePlanning#48  Starting sequential step (setTempLow heat_pump) Effect: temp_low heat_pump
-garage_pump>setTempLow#50      Intention started
-garage_pump                    Belief changed: temp_low heat_pump
+heatPump                       Belief changed: not switch_off heat_pump
+heatPump>SwitchOn_hp#65        Intention success
+heatPump>OnlinePlanning#64     Starting sequential step (setTempLow heat_pump) Effect: temp_low heat_pump
+heatPump>setTempLow#66         Intention started
+heatPump                       Belief changed: temp_low heat_pump
 0:17:00 Heat pump is already at 50 degrees
-garage_pump                    Belief changed: not temp_high heat_pump
-garage_pump>setTempLow#50      Intention success
-garage_pump>OnlinePlanning#48  Starting sequential step (setTempHigh heat_pump solar_panel car_charger window_open) Effect: temp_high heat_pump
-garage_pump>setTempHigh#51     Intention started
-garage_pump                    Belief changed: temp_high heat_pump
+heatPump                       Belief changed: not temp_high heat_pump
+heatPump>setTempLow#66         Intention success
+heatPump>OnlinePlanning#64     Starting sequential step (setTempHigh heat_pump solar_panel car_charger window_open) Effect: temp_high heat_pump
+heatPump>setTempHigh#67        Intention started
+heatPump                       Belief changed: temp_high heat_pump
 0:17:15 High temperature (80 degrees) set on heat pump
-garage_pump                    Belief changed: not temp_low heat_pump
-garage_pump>setTempHigh#51     Intention success
-garage_pump>OnlinePlanning#48  Intention success
-garage_pump                    Succesfully used intention OnlinePlanning to achieve goal PddlGoal#47[object Object]
-garage_pump>RetryFourTimesIntention#47 Intention success
-garage_pump                    Succesfully used intention RetryFourTimesIntention to achieve goal RetryGoal#48[object Object]
-0:18:00 - Deicing system agent -
-
-GOAL: turn on the deicing system
-
-garage_deice_system            Trying to use intention RetryFourTimesIntention to achieve goal RetryGoal#53[object Object]
-garage_deice_system>RetryFourTimesIntention#52 Intention started
-garage_deice_system            Trying to use intention OnlinePlanning to achieve goal PddlGoal#52[object Object]
-garage_deice_system>OnlinePlanning#53 Intention started
-Energy is available from the solar panels
-The weather is SUNNY
-The temperature outside is -2°C
-garage_deice_system            Belief changed: temperature under_zero
-garage_deice_system            Belief changed: not temperature over_zero
-robot_garden                   Belief changed: not temperature over_zero
-Energy is available from the solar panels
-The weather is SUNNY
-The temperature outside is -2°C
-0:18:30 garage_deice_system>OnlinePlanning#53 Plan found:
-garage_deice_system>OnlinePlanning#53 - (turnon deicing_system under_zero)
-garage_deice_system>OnlinePlanning#53 Starting sequential step (TurnOn deicing_system under_zero) Effect: on deicing_system
-garage_deice_system>TurnOn#54  Intention started
-garage_deice_system            Belief changed: on deicing_system
-0:18:45 Deicing system ON
-garage_deice_system            Belief changed: not off deicing_system
-garage_deice_system>TurnOn#54  Intention success
-garage_deice_system>OnlinePlanning#53 Intention success
-garage_deice_system            Succesfully used intention OnlinePlanning to achieve goal PddlGoal#52[object Object]
-0:19:00 garage_deice_system>RetryFourTimesIntention#52 Intention success
-garage_deice_system            Succesfully used intention RetryFourTimesIntention to achieve goal RetryGoal#53[object Object]
-0:20:00 - NO PLANNING TEST -
+heatPump                       Belief changed: not temp_low heat_pump
+heatPump>setTempHigh#67        Intention success
+heatPump>OnlinePlanning#64     Intention success
+heatPump                       Succesfully used intention OnlinePlanning to achieve goal PddlGoal#63[object Object]
+heatPump>RetryFourTimesIntention#63 Intention success
+heatPump                       Succesfully used intention RetryFourTimesIntention to achieve goal RetryGoal#64[object Object]
+0:18:00 - NO PLANNING TEST -
 
 - Smart air purifier agent -
 
 GOAL: switch on the air purifier and open the kitchen window
 
-houseAgent                     Trying to use intention PostmanAcceptAllRequest to achieve goal Postman#55[object Object]
-houseAgent>PostmanAcceptAllRequest#55 Intention started
+houseAgent                     Trying to use intention PostmanAcceptAllRequest to achieve goal Postman#68[object Object]
+houseAgent>PostmanAcceptAllRequest#68 Intention started
 smartAirAgent>smartAirPurifierIntention#10 status kitchen_air_pur: dirty_air
 
-houseAgent>PostmanAcceptAllRequest#8 Reading received message windowGoal#56[object Object]
-houseAgent                     Trying to use intention windowIntention to achieve goal windowGoal#56[object Object]
-houseAgent>windowIntention#56  Intention started
+houseAgent>PostmanAcceptAllRequest#61 Reading received message windowGoal#69[object Object]
+houseAgent                     Trying to use intention windowIntention to achieve goal windowGoal#69[object Object]
+houseAgent>windowIntention#69  Intention started
 kitchen_window1 is open
-garage_pump                    Belief changed: open window_open
-0:21:00 - Infrared camera agent -
+heatPump                       Belief changed: not notopen window_open
+0:20:00 - Infrared camera agent -
 
 GOAL: lock the door of the garage
 
-houseAgent                     Trying to use intention PostmanAcceptAllRequest to achieve goal Postman#57[object Object]
-houseAgent>PostmanAcceptAllRequest#57 Intention started
-infraredCameraAgent>infraredCameraIntention#12 status garage_camera: move_detect
+houseAgent                     Trying to use intention PostmanAcceptAllRequest to achieve goal Postman#70[object Object]
+houseAgent>PostmanAcceptAllRequest#70 Intention started
+infraredCameraAgent>infraredCameraIntention#13 status garage_camera: move_detect
 
-houseAgent>PostmanAcceptAllRequest#55 Reading received message smartDoorLockGoal_lock#58[object Object]
-houseAgent                     Trying to use intention smartDoorLockIntention_lock to achieve goal smartDoorLockGoal_lock#58[object Object]
-houseAgent>smartDoorLockIntention_lock#58 Intention started
+houseAgent>PostmanAcceptAllRequest#68 Reading received message smartDoorLockGoal_lock#71[object Object]
+houseAgent                     Trying to use intention smartDoorLockIntention_lock to achieve goal smartDoorLockGoal_lock#71[object Object]
+houseAgent>smartDoorLockIntention_lock#71 Intention started
 garage_door_lock is locked
-0:22:00 - Humidity meter agent -
+0:21:00 - House agent -
+
+- 1. Deicing system -
+
+GOAL: turn on the deicing system
+
+Deicing system ON
+gardenRobot                    Belief changed: not temperature over_zero
+The weather is SUNNY
+The temperature outside is -2°C
+0:22:00 - 2. Humidity meter -
 
 GOAL: open the bathroom window when humidity percentage goes over 85%
 
-houseAgent                     Trying to use intention PostmanAcceptAllRequest to achieve goal Postman#59[object Object]
-houseAgent>PostmanAcceptAllRequest#59 Intention started
+houseAgent                     Trying to use intention PostmanAcceptAllRequest to achieve goal Postman#72[object Object]
+houseAgent>PostmanAcceptAllRequest#72 Intention started
 Humidity: 88%
-houseAgent>PostmanAcceptAllRequest#57 Reading received message windowGoal#60[object Object]
-houseAgent                     Trying to use intention windowIntention to achieve goal windowGoal#60[object Object]
-houseAgent>windowIntention#60  Intention started
 bathroom_window is open
 0:22:30 babyroom_door is locked
 entrance_door is locked
 garage_door_lock is locked
+houseAgent>smartDoorLockIntention#3 Intention success
+houseAgent                     Succesfully used intention smartDoorLockIntention to achieve goal smartDoorLockGoal#3[object Object]
+houseAgent>smartDoorLockIntention#4 Intention success
+houseAgent                     Succesfully used intention smartDoorLockIntention to achieve goal smartDoorLockGoal#4[object Object]
 houseAgent>smartDoorLockIntention#5 Intention success
 houseAgent                     Succesfully used intention smartDoorLockIntention to achieve goal smartDoorLockGoal#5[object Object]
-houseAgent>smartDoorLockIntention#6 Intention success
-houseAgent                     Succesfully used intention smartDoorLockIntention to achieve goal smartDoorLockGoal#6[object Object]
-houseAgent>smartDoorLockIntention#7 Intention success
-houseAgent                     Succesfully used intention smartDoorLockIntention to achieve goal smartDoorLockGoal#7[object Object]
+0:23:45 ## CONSUMPTION REPORT ##
+        - Electricity >         13.33 kW         3.4658 €
+        - Water >               15 L             0.020550000000000002 €
+
+
+- END OF TEST -

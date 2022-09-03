@@ -1,3 +1,5 @@
+const Goal = require('../bdi/Goal');
+const Intention = require('../bdi/Intention');
 const Observable = require('../utils/Observable');
 
 class SmartTilting extends Observable {
@@ -9,14 +11,52 @@ class SmartTilting extends Observable {
     }
     openTilting () {
         this.status = 'open'
-        this.house.devices.garage_light.turnOn()
         console.log('The tilting is open')
     }
     closeTilting () {
         this.status = 'close'
-        this.house.devices.garage_light.turnOff()
         console.log('The tilting is close')
     }
 }
 
-module.exports = SmartTilting;
+class OpenCloseTiltingGoal extends Goal{
+    constructor(smartTilting, state) {
+      super(smartTilting, state);
+  
+      /** @type {smartTilting} smartTilting */
+      this.smartTilting = smartTilting;
+      /** @type {string} state */
+      this.state = state;
+    }
+  }
+  
+  class OpenCloseTiltingIntention extends Intention{
+    constructor(agent, goal) {
+      super(agent, goal);
+  
+      /** @type {smartTilting} smartTilting */
+      this.smartTilting = this.goal.smartTilting;
+      /** @type {string} state */
+      this.state = this.goal.state;
+    }
+  
+    static applicable(goal) {
+      return goal instanceof OpenCloseTiltingGoal;
+    }
+  
+    *exec() {
+        while(true){
+          yield
+          if ((this.smartTilting.status == 'close') && (this.state == 'open')){
+            this.smartTilting.openTilting();
+          }
+          
+          if((this.smartTilting.status == 'open') && (this.state == 'close')){
+            this.smartTilting.closeTilting();
+          }
+          break;
+        }
+    }
+  }
+
+module.exports = {SmartTilting, OpenCloseTiltingGoal, OpenCloseTiltingIntention};

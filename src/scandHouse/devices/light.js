@@ -7,7 +7,6 @@ class Light extends Observable {
         this.name = name; 
         this.set('status', 'off') 
     }
-
     turnOn () {
         if (this.status != 'on'){
             this.house.utilities.electricity.consumption += 10;

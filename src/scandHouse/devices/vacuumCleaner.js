@@ -1,6 +1,6 @@
-const Agent = require('../bdi/Agent');
+const Observable = require('../utils/Observable');
 
-class VacuumCleaner extends Agent {
+class VacuumCleaner extends Observable {
     constructor (house, name) {
         super(house, name); 
         this.house = house; 
@@ -11,19 +11,18 @@ class VacuumCleaner extends Agent {
         this.water = 2
         this.garbage = 0
         this.isCleaning = false
-        this.isFullGarbage = false
-        this.hasWater = true
+        this.set('isFullGarbage', false)
+        this.set('hasWater', true)
         this.inBase = true
         this.returningToBase = false
         this.counterRoom = 0
     }
-
     turnOff () {
         if (this.status != 'turn_off'){
             if (this.water <= 0)
-                this.hasWater = false
+                this.hasWater = false, console.log('ALERT: ' + this.name  + ' has no water')
             if (this.garbage >= 100)
-                this.isFullGarbage = true
+                this.isFullGarbage = true, console.log('ALERT: ' + this.name  + ' has full garbage')
             this.status = 'turn_off'
             this.isCleaning = false
             this.inBase = true
@@ -31,6 +30,7 @@ class VacuumCleaner extends Agent {
             this.counterRoom = 0
 
             console.log(this.name + ' turned off')
+            this.lastTask()
         }
     }
     turnOn () {
@@ -52,7 +52,7 @@ class VacuumCleaner extends Agent {
         if (this.battery <= 20)
                 console.log('ALERT: ' + this.name + ' has low battery!')
         if (this.garbage >= 100)
-                this.isFullGarbage = true, console.log(this.name + ' has full garbage')
+                this.isFullGarbage = true, console.log('ALERT: ' + this.name + ' has full garbage')
 
         this.battery -= 12
         this.water -= 0.2
@@ -69,6 +69,7 @@ class VacuumCleaner extends Agent {
     checkStatusBase(state){
         if(state == true){
             this.returningToBase = true
+            this.cleanAll()
             console.log(this.name + ' has returned to the base')
         }
         else{
@@ -83,7 +84,6 @@ class VacuumCleaner extends Agent {
         console.log('\t' + 'Battery: ' + this.battery + ' %')
         console.log('\t' + 'Water  : ' + this.water + ' L')
         console.log('\t' + 'Garbage: ' + this.garbage + ' %')
-        this.turnOff()
     }
     resetVacuum(){
         this.hasWater = true
@@ -94,8 +94,6 @@ class VacuumCleaner extends Agent {
         this.garbage = 0
 
         console.log(this.name + ' has been reset. Garbage is empty and water is full')
-
-        this.turnOff()
     }
 }
 
