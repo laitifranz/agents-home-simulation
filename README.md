@@ -31,11 +31,12 @@ The simulation developed in this project shows different interactions between th
   ```
 
 ## Usage
-Run one of the two scenarios available in the [scenario](./src/scandHouse/scenario) folder by run this command
+Run one of the two scenarios available in the [scenario](./src/scandHouse/scenario) folder:
+1. *Scenario_day* simulates an entire day by changing manually what sensors perceive to see how agents react
  ```sh
   node src/scandHouse/scenario/scenario_day.js
   ```
-  or
+2. *Scenario_planning_intention* simulates how planning and no-planning agents perform
   ```sh
   node src/scandHouse/scenario/scenario_planning_intention.js
   ```
